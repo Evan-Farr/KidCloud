@@ -29,5 +29,10 @@ namespace KidCloudProject.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Child> Children { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Parent> Parents { get; set; }
+        public DbSet<DayCare> DayCares { get; set; }
+        public DbSet<DailyReport> DailyReports { get; set; }
     }
 }

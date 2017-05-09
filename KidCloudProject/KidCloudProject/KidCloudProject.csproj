@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201705092052162_added dailyreports model and dailyreports list to daycare.Designer.cs">
       <DependentUpon>201705092052162_added dailyreports model and dailyreports list to daycare.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705092101311_changed phone in 3 models to string.cs" />
+    <Compile Include="Migrations\201705092101311_changed phone in 3 models to string.Designer.cs">
+      <DependentUpon>201705092101311_changed phone in 3 models to string.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705092052162_added dailyreports model and dailyreports list to daycare.resx">
       <DependentUpon>201705092052162_added dailyreports model and dailyreports list to daycare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705092101311_changed phone in 3 models to string.resx">
+      <DependentUpon>201705092101311_changed phone in 3 models to string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

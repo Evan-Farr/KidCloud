@@ -21,8 +21,8 @@ namespace KidCloudProject.Models
         public string State { get; set; }
         [Required, StringLength(5)]
         public string ZipCode { get; set; }
-        [Required, DataType(DataType.PhoneNumber)]
-        public PhoneAttribute Phone { get; set; }
+        [Required, StringLength(10)]
+        public string Phone { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]
