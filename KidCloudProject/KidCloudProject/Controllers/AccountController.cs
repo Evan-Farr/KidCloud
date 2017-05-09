@@ -172,11 +172,15 @@ namespace KidCloudProject.Controllers
                     }
                     else if (model.UserRoles == "Employee")
                     {
-                        return RedirectToAction("PrivateCreate", "Employees");
+                        return RedirectToAction("Create", "Employees");
                     }
                     else if (model.UserRoles == "DayCare")
                     {
-                        return RedirectToAction("PrivateCreate", "DayCares");
+                        return RedirectToAction("Create", "DayCares");
+                    }
+                    else if (model.UserRoles == "Child")
+                    {
+                        return RedirectToAction("Create", "Children");
                     }
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");

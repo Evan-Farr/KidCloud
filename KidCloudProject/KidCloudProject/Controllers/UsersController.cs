@@ -44,8 +44,6 @@ namespace TrashPickup.Controllers
                     string holder = user.GetUserId();
                     var temp = db.Employees.Where(i => i.UserId.Id == holder).FirstOrDefault().Id;
                     ViewBag.Id = temp;
-                    var temp1 = db.Employees.Where(i => i.UserId.Id == holder).FirstOrDefault().ZipCode;
-                    ViewBag.ZipCode = temp1;
                     ViewBag.displayMenu = "Employee";
                 }
                 else if (isUser("DayCare"))
