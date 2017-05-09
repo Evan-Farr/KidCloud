@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KidCloudProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace KidCloudProject.Controllers
 {
@@ -50,6 +51,9 @@ namespace KidCloudProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                var holder = User.Identity.GetUserId();
+                var same = db.Users.Where(s => s.Id == holder).FirstOrDefault();
+                parent.UserId = same;
                 db.Parents.Add(parent);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Users");
