@@ -1,0 +1,75 @@
+﻿@model IEnumerable<KidCloudProject.Models.DailyReport>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BathroomUse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sleep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuppliesNeeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mood)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiscellaneousNotes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BathroomUse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sleep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuppliesNeeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mood)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiscellaneousNotes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

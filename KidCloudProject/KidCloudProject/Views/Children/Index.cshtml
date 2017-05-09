@@ -1,0 +1,99 @@
+﻿@model IEnumerable<KidCloudProject.Models.Child>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasAllergies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllergiesDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TakesMedications)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicationInstructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasSpecialFoodRequirements)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodRequirementsInstructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSpecialNeeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecialNeedsType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecialNeedsRequirements)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasAllergies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllergiesDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TakesMedications)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicationInstructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasSpecialFoodRequirements)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodRequirementsInstructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSpecialNeeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecialNeedsType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecialNeedsRequirements)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

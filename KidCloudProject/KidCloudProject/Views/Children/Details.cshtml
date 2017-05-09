@@ -1,0 +1,114 @@
+﻿@model KidCloudProject.Models.Child
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Child</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasAllergies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasAllergies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllergiesDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllergiesDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TakesMedications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TakesMedications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicationInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicationInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasSpecialFoodRequirements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasSpecialFoodRequirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodRequirementsInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodRequirementsInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSpecialNeeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSpecialNeeds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialNeedsType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialNeedsType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialNeedsRequirements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialNeedsRequirements)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

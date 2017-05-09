@@ -1,0 +1,82 @@
+﻿@model KidCloudProject.Models.DailyReport
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DailyReport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BathroomUse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BathroomUse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Meals)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Meals)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sleep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sleep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuppliesNeeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuppliesNeeds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mood)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mood)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiscellaneousNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiscellaneousNotes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
