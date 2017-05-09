@@ -6,7 +6,7 @@ using System.Web;
 
 namespace KidCloudProject.Models
 {
-    public class Parent
+    public class Employee
     {
         [Key]
         public int Id { get; set; }
@@ -25,13 +25,10 @@ namespace KidCloudProject.Models
         public PhoneAttribute Phone { get; set; }
         [Required]
         public string Email { get; set; }
-        [Required]
-        public int NumberOfChildren { get; set; }
-        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
-        public decimal? MoneyOwed { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? StartDate { get; set; }
 
 
-        public virtual DayCare DayCareId { get; set; }
         public virtual ApplicationUser UserId { get; set; }
     }
 }
