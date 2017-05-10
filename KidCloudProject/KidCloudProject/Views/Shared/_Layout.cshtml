@@ -12,6 +12,10 @@
             height: 500px;
         }
     </style>
+    <link rel='stylesheet' href='~/fullcalendar-3.4.0/fullcalendar.css' />
+    <script src='~/fullcalendar-3.4.0/lib/jquery.min.js'></script>
+    <script src='~/fullcalendar-3.4.0/lib/moment.min.js'></script>
+    <script src='~/fullcalendar-3.4.0/fullcalendar.js'></script>
 
 </head>
 <body>
@@ -44,7 +48,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
