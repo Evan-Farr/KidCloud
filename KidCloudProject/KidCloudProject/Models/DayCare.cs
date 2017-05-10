@@ -14,6 +14,7 @@ namespace KidCloudProject.Models
             Parents = new List<Parent>();
             Employees = new List<Employee>();
             Children = new List<Child>();
+            PendingApplications = new List<Parent>();
         }
 
         [Key]
@@ -43,6 +44,7 @@ namespace KidCloudProject.Models
         public virtual ICollection<Parent> Parents { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<Child> Children { get; set; }
+        public virtual ICollection<Parent> PendingApplications { get; set; }
         public virtual ApplicationUser UserId { get; set; }
     }
 }

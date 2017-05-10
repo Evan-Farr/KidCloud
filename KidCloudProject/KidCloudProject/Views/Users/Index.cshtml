@@ -40,18 +40,15 @@ else if (ViewBag.displayMenu == "DayCare")
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <h3>
         <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <br />
         <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("View Pending Applications", "IndexApplications", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <br />
         <li>@Html.ActionLink("Create New Daily Report", "Create", "DailyReports", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
     </h3>
 }
-@*else if (ViewBag.displayMenu == "Child")
-{
-    <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
-    <h3>
-        <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
-    </h3>
-}*@
+
 
