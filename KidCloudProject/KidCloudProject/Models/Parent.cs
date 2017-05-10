@@ -8,6 +8,11 @@ namespace KidCloudProject.Models
 {
     public class Parent
     {
+        public Parent()
+        {
+            Children = new List<Child>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -30,7 +35,7 @@ namespace KidCloudProject.Models
         [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
         public decimal? MoneyOwed { get; set; }
 
-
+        public virtual ICollection<Child> Children { get; set; }
         public virtual DayCare DayCareId { get; set; }
         public virtual ApplicationUser UserId { get; set; }
     }

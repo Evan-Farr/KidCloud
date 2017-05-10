@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201705092101311_changed phone in 3 models to string.Designer.cs">
       <DependentUpon>201705092101311_changed phone in 3 models to string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705101458098_created junction table for parents and children.cs" />
+    <Compile Include="Migrations\201705101458098_created junction table for parents and children.Designer.cs">
+      <DependentUpon>201705101458098_created junction table for parents and children.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
@@ -358,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705092101311_changed phone in 3 models to string.resx">
       <DependentUpon>201705092101311_changed phone in 3 models to string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705101458098_created junction table for parents and children.resx">
+      <DependentUpon>201705101458098_created junction table for parents and children.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -8,6 +8,11 @@ namespace KidCloudProject.Models
 {
     public class Child
     {
+        public Child()
+        {
+            Parents = new List<Parent>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -35,7 +40,7 @@ namespace KidCloudProject.Models
         public string SpecialNeedsRequirements { get; set; }
 
 
-        public virtual Parent ParentId { get; set; }
+        public virtual ICollection<Parent> Parents { get; set; }
         public virtual ApplicationUser UserId { get; set; }
     }
 }
