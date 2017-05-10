@@ -29,6 +29,7 @@ namespace KidCloudProject.Models
         public DateTime? StartDate { get; set; }
 
 
+        public virtual DayCare DayCareId { get; set; }
         public virtual ApplicationUser UserId { get; set; }
     }
 }

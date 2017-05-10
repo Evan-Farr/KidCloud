@@ -59,13 +59,6 @@ namespace KidCloudProject
                 role.Name = "DayCare";
                 roleManager.Create(role);
             }
-
-            if (!roleManager.RoleExists("Child"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Child";
-                roleManager.Create(role);
-            }
         }
     }
 }

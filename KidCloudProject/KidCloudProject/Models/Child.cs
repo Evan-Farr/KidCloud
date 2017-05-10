@@ -29,7 +29,7 @@ namespace KidCloudProject.Models
         [DataType(DataType.MultilineText)]
         public string FoodRequirementsInstructions { get; set; }
         [Required]
-        public bool IsSpecialNeeds { get; set; }
+        public bool HasSpecialNeeds { get; set; }
         public string SpecialNeedsType { get; set; }
         [DataType(DataType.MultilineText)]
         public string SpecialNeedsRequirements { get; set; }

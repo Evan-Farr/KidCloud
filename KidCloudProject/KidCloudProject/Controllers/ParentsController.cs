@@ -56,7 +56,7 @@ namespace KidCloudProject.Controllers
                 parent.UserId = same;
                 db.Parents.Add(parent);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Create", "Children"/*, new { ParentId = ViewBag.Id }, null*/);
             }
 
             return View(parent);
