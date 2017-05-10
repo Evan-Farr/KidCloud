@@ -151,5 +151,10 @@ namespace KidCloudProject.Controllers
             }
             return View(db.DayCares.Where(p => p.ZipCode == zipCode).ToList());
         }
+
+        public ActionResult Calendar()
+        {
+            return View();
+        }
     }
 }
