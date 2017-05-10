@@ -49,12 +49,16 @@
             </td>
         </tr>
     }
-    <tr>
+    @*<tr>
         <td>
             @Html.ActionLink("Back", "Index", "Users") 
         </td>
-    </tr>
+    </tr>*@
 </table>
+<hr />
+<td>
+    @Html.ActionLink("Back", "Index", "Users")
+</td>
 <hr />
 <br />
 
@@ -66,9 +70,7 @@
         var map;
         var directionsDisplay;
         var directionsService;
-        var stepDisplay;
         var pickups = @Html.Raw(Json.Encode(Model));
-        var waypts = [];
         function initMap() {
             geocoder = new google.maps.Geocoder();
             directionsService = new google.maps.DirectionsService;
@@ -81,16 +83,11 @@
             map = new google.maps.Map(document.getElementById("map"), mapOptions);
             directionsDisplay.setMap(map);
             codeAddress();
-            calculateAndDisplayRoute();
         }
 
         function codeAddress() {
             for(var i = 0; i < pickups.length; i++){
                 var address = pickups[i].StreetAddress + " " + pickups[i].City + " " + pickups[i].State + " " + pickups[i].ZipCode;
-                waypts.push({
-                    location: address,
-                    stopover: true
-                });
                 geocoder.geocode( { 'address': address}, function(results, status) {
                     if (status == 'OK') {
                         map.setCenter(results[0].geometry.location);
@@ -104,34 +101,6 @@
                     }
                 });
             }
-        }
-
-        function calculateAndDisplayRoute() {
-            console.log(waypts);
-            directionsService.route({
-                origin: "333 n plankinton ave Milwaukee, wi 53202",
-                destination: "333 n plankinton ave Milwaukee, wi 53202",
-                waypoints: waypts,
-                optimizeWaypoints: true,
-                travelMode: 'DRIVING'
-            }, function(response, status) {
-                if (status === 'OK') {
-                    directionsDisplay.setDirections(response);
-                    var route = response.routes[0];
-                    var summaryPanel = document.getElementById('directions-panel');
-                    summaryPanel.innerHTML = '';
-                    for (var i = 0; i < route.legs.length; i++) {
-                        var routeSegment = i + 1;
-                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                            '</b><br>';
-                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-                    }
-                } else {
-                    window.alert('Directions request failed due to ' + status);
-                }
-            });
         }
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEyFXk-3Fhe89C_67JVSJbk0hhOyxRGAs&callback=initMap"></script>
