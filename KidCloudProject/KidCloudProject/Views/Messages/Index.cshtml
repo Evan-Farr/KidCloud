@@ -21,11 +21,17 @@
                 </div>
             }
         </div>
-        <div class="input-group">
-            <input type="text" class="form-control border-top-radius-none width-100">
-            <span class="input-group-btn">
-                <button class="btn btn-default border-top-radius-none" type="button">Send</button>
-            </span>
-        </div>
+
+        @using (Html.BeginForm("Index", "Messages", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="input-group">
+                @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100" })
+                <span class="input-group-btn">
+                    <input class="btn btn-default border-top-radius-none" type="submit" value="Send">
+                </span>
+            </div>
+        }
     </div>
 </div>
