@@ -142,7 +142,7 @@ namespace KidCloudProject.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin") && !u.Name.Contains("Employee")).ToList(), "Name", "Name");
             return View();
         }
 
@@ -171,16 +171,12 @@ namespace KidCloudProject.Controllers
                     {
                         return RedirectToAction("Create", "Parents");
                     }
-                    else if (model.UserRoles == "Employee")
-                    {
-                        return RedirectToAction("Create", "Employees");
-                    }
                     else if (model.UserRoles == "DayCare")
                     {
                         return RedirectToAction("Create", "DayCares");
                     }
                 }
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin") && !u.Name.Contains("Employee")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 

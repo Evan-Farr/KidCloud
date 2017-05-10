@@ -127,5 +127,14 @@ namespace KidCloudProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult FindDayCares(string zipCode)
+        {
+            if (zipCode == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(db.DayCares.Where(p => p.ZipCode == zipCode).ToList());
+        }
     }
 }

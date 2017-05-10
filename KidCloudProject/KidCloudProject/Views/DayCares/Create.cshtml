@@ -23,10 +23,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OpenDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DateEstablished, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OpenDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DateEstablished, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateEstablished, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,16 +84,6 @@
                 <div class="checkbox">
                     @Html.EditorFor(model => model.AcceptChildrenUnderAgeTwo)
                     @Html.ValidationMessageFor(model => model.AcceptChildrenUnderAgeTwo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AcceptDisabilites, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.AcceptDisabilites)
-                    @Html.ValidationMessageFor(model => model.AcceptDisabilites, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

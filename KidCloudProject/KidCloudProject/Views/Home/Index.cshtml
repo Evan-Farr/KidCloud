@@ -1,4 +1,6 @@
-﻿@{
+﻿@model KidCloudProject.Models.DayCare
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -19,7 +21,12 @@
     <div class="col-md-4">
         <h2>Find the right Day Care!</h2>
         <p>We only accept the best, accredited day cares on Kid-Cloud. Enter your zipcode and choose the perfect day care near you!</p>
-        <p><a class="btn btn-default" href="http://localhost:34611/Home/Contact">Learn more &raquo;</a></p>
+        @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
+        {
+            @Html.TextBoxFor(model => model.ZipCode)
+            @Html.ValidationMessageFor(model => model.ZipCode)
+            <button type="submit">Search by ZipCode</button>
+        }
     </div>
     <div class="col-md-4">
         <h2>Join the Cloud</h2>

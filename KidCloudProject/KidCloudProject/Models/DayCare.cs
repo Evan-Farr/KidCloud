@@ -20,7 +20,7 @@ namespace KidCloudProject.Models
         public int Id { get; set; }
         public string Name { get; set; }
         [DataType(DataType.Date)]
-        public DateTime? OpenDate { get; set; }
+        public DateTime? DateEstablished { get; set; }
         [Required]
         public string StreetAddress { get; set; }
         public string City { get; set; }
@@ -33,8 +33,6 @@ namespace KidCloudProject.Models
         public string Email { get; set; }
         [Required]
         public bool AcceptChildrenUnderAgeTwo { get; set; }
-        [Required]
-        public bool AcceptDisabilites { get; set; }
         [Required]
         public int MaxChildren { get; set; }
         public bool CurrentlyAcceptingApplicants { get; set; }

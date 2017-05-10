@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201705101506232_added daycare to dailyReport and employee.Designer.cs">
       <DependentUpon>201705101506232_added daycare to dailyReport and employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705101629354_not sure what changed.cs" />
+    <Compile Include="Migrations\201705101629354_not sure what changed.Designer.cs">
+      <DependentUpon>201705101629354_not sure what changed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
@@ -336,6 +340,7 @@
     <Content Include="Views\Children\Edit.cshtml" />
     <Content Include="Views\Children\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\DayCares\FindDayCares.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705101506232_added daycare to dailyReport and employee.resx">
       <DependentUpon>201705101506232_added daycare to dailyReport and employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705101629354_not sure what changed.resx">
+      <DependentUpon>201705101629354_not sure what changed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

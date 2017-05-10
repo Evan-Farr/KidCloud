@@ -31,7 +31,7 @@ namespace KidCloudProject.Models
         [Required]
         public string Email { get; set; }
         [Required]
-        public int NumberOfChildren { get; set; }
+        public int NumberOfChildren { get { return Children.Count; } }
         [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
         public decimal? MoneyOwed { get; set; }
 

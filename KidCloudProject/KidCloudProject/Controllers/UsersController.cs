@@ -32,13 +32,6 @@ namespace TrashPickup.Controllers
                     ViewBag.Id = temp;
                     ViewBag.displayMenu = "Parent";
                 }
-                //else if (isUser("Child"))
-                //{
-                //    string holder = user.GetUserId();
-                //    var temp = db.Children.Where(i => i.UserId.Id == holder).FirstOrDefault().Id;
-                //    ViewBag.Id = temp;
-                //    ViewBag.displayMenu = "Child";
-                //}
                 else if (isUser("Employee"))
                 {
                     string holder = user.GetUserId();
