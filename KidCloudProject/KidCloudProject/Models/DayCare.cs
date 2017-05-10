@@ -36,7 +36,8 @@ namespace KidCloudProject.Models
         [Required]
         public int MaxChildren { get; set; }
         public bool CurrentlyAcceptingApplicants { get; set; }
-
+        public string ChannelId { get; set; }
+   
 
         public virtual ICollection<DailyReport> DailyReports { get; set; }
         public virtual ICollection<Parent> Parents { get; set; }

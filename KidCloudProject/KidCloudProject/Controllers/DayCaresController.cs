@@ -36,6 +36,21 @@ namespace KidCloudProject.Controllers
             return View(dayCare);
         }
 
+        //This details is meant for the page where you can see details and apply 
+        public ActionResult ApplyDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DayCare dayCare = db.DayCares.Find(id);
+            if (dayCare == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dayCare);
+        }
+
         // GET: DayCares/Create
         public ActionResult Create()
         {

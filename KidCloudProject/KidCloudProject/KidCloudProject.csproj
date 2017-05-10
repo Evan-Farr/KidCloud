@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201705101629354_not sure what changed.Designer.cs">
       <DependentUpon>201705101629354_not sure what changed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705102046185_added ChannelId to DayCare model.cs" />
+    <Compile Include="Migrations\201705102046185_added ChannelId to DayCare model.Designer.cs">
+      <DependentUpon>201705102046185_added ChannelId to DayCare model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
@@ -360,6 +364,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\DayCares\FindDayCares.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\DayCares\ApplyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705101629354_not sure what changed.resx">
       <DependentUpon>201705101629354_not sure what changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705102046185_added ChannelId to DayCare model.resx">
+      <DependentUpon>201705102046185_added ChannelId to DayCare model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
