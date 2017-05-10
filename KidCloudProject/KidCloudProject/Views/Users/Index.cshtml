@@ -32,6 +32,7 @@ else if (ViewBag.displayMenu == "Employee")
         <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("View My DayCare", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
     </h3>
 }
 else if (ViewBag.displayMenu == "DayCare")
@@ -42,6 +43,8 @@ else if (ViewBag.displayMenu == "DayCare")
         <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("Create New Daily Report", "Create", "DailyReports", new { id = ViewBag.Id }, null)</li>
     </h3>
 }
 @*else if (ViewBag.displayMenu == "Child")

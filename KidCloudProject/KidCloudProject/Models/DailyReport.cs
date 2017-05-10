@@ -27,6 +27,8 @@ namespace KidCloudProject.Models
         [DataType(DataType.MultilineText)]
         public string MiscellaneousNotes { get; set; }
 
+
         public virtual Child ChildId { get; set; }
+        public virtual DayCare DayCareId { get; set; }
     }
 }
