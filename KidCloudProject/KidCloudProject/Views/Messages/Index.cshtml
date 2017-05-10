@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Twilio.Rest.Chat.V2.Service.Channel.MessageResource>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="">
+    <div class="messages-container">
+        <div class="messages">
+            @foreach (var m in Model)
+            {
+                <div class="message">
+                    <div class="message-icon">
+
+                    </div>
+                    <div class="message-body">
+                        <div class="message-info"><strong>@m.From</strong> <small>@m.DateCreated</small></div>
+                        <div class="message-text">@m.Body</div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control border-top-radius-none width-100">
+            <span class="input-group-btn">
+                <button class="btn btn-default border-top-radius-none" type="button">Send</button>
+            </span>
+        </div>
+    </div>
+</div>
