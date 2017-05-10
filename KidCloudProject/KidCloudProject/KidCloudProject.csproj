@@ -265,6 +265,10 @@
     <Compile Include="Migrations\201705102046185_added ChannelId to DayCare model.Designer.cs">
       <DependentUpon>201705102046185_added ChannelId to DayCare model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705102116579_added list of pendingapplications to daycare.cs" />
+    <Compile Include="Migrations\201705102116579_added list of pendingapplications to daycare.Designer.cs">
+      <DependentUpon>201705102116579_added list of pendingapplications to daycare.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
@@ -407,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705102046185_added ChannelId to DayCare model.resx">
       <DependentUpon>201705102046185_added ChannelId to DayCare model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705102116579_added list of pendingapplications to daycare.resx">
+      <DependentUpon>201705102116579_added list of pendingapplications to daycare.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
