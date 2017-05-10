@@ -360,6 +360,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\DayCares\FindDayCares.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\DayCares\ApplyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

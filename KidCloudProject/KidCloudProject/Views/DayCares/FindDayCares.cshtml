@@ -45,15 +45,10 @@
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
-                @Html.ActionLink("View Details", "Details", "DayCares") 
+                @Html.ActionLink("View Details", "ApplyDetails", "DayCares", new { id = item.Id }, null) 
             </td>
         </tr>
     }
-    @*<tr>
-        <td>
-            @Html.ActionLink("Back", "Index", "Users") 
-        </td>
-    </tr>*@
 </table>
 <hr />
 <td>
