@@ -141,5 +141,22 @@ namespace KidCloudProject.Controllers
             }
             return View(parent);
         }
+
+        public ActionResult SendApplication(int? id, int dayCareId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Parent parent = db.Parents.Find(id);
+            if (parent == null)
+            {
+                return RedirectToAction("Register", "Account"); 
+            }
+            var sendTo = db.DayCares.Where(s => s.Id == dayCareId).Select(p => p).FirstOrDefault();
+            sendTo.PendingApplications.Add(parent);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Users");
+        }
     }
 }
