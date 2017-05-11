@@ -89,6 +89,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PayPal, Version=1.8.0.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.8.0\lib\net451\PayPal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -221,6 +225,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ParentsController.cs" />
+    <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +277,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\DailyReport.cs" />
     <Compile Include="Models\DayCare.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -483,6 +489,10 @@
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\DayCares\ApplyDetails.cshtml" />
     <Content Include="Views\DayCares\Calendar.cshtml" />
+    <Content Include="Views\PayPal\Index.cshtml" />
+    <Content Include="Views\PayPal\SuccessView.cshtml" />
+    <Content Include="Views\PayPal\FailureView.cshtml" />
+    <Content Include="Views\PayPal\PaymentWithPaypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
