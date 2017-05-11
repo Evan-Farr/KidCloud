@@ -7,33 +7,33 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Daily Report", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ReportDate)
+            @Html.DisplayName("Report Date")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BathroomUse)
+            @Html.DisplayName("Bathroom")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Meals)
+            @Html.DisplayName("Food")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sleep)
+            @Html.DisplayName("Sleep")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ActivityReport)
+            @Html.DisplayName("Activity")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SuppliesNeeds)
+            @Html.DisplayName("Bring Supplies")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Mood)
+            @Html.DisplayName("Mood")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MiscellaneousNotes)
+            @Html.DisplayName("Misc. Notes")
         </th>
         <th></th>
     </tr>
@@ -65,8 +65,8 @@
             @Html.DisplayFor(modelItem => item.MiscellaneousNotes)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id })*@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
