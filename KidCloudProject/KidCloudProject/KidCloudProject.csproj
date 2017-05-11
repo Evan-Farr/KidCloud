@@ -238,7 +238,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\TestHub.cs" />
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Migrations\201705091958566_added parent model.cs" />
     <Compile Include="Migrations\201705091958566_added parent model.Designer.cs">
       <DependentUpon>201705091958566_added parent model.cs</DependentUpon>

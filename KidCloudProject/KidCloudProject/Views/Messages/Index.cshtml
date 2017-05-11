@@ -10,41 +10,24 @@
         <div class="messages" id="messages">
             @foreach (var m in Model)
             {
-                <div class="message" id="@m.Sid">
+                <div class="message">
                     <div class="message-icon">
 
                     </div>
                     <div class="message-body">
-                        <div class="message-info"><strong>@m.From</strong> <small>@m.DateCreated</small></div>
+                        <div class="message-info"><strong>@m.From</strong> <small>@m.DateCreated.Value.ToLocalTime().ToString("h:mm tt")</small></div>
                         <div class="message-text">@m.Body</div>
                     </div>
                 </div>
             }
         </div>
-
-        @using (Html.BeginForm("Index", "Messages", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="input-group">
-                @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100", @id = "messageInput" })
-                <span class="input-group-btn">
-                    <input class="btn btn-default border-top-radius-none" type="submit" value="Send">
-                </span>
-            </div>
-        }
+        <div class="input-group">
+            @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100", @id = "messageInput" })
+            <span class="input-group-btn">
+                <input class="btn btn-default border-top-radius-none" type="submit" value="Send" id="sendMessage">
+            </span>
+        </div>
     </div>
-</div>
-
-<hr />
-
-<div class="container">
-    <input type="text" id="message" />
-    <input type="button" id="sendmessage" value="Send" />
-    <input type="hidden" id="displayname" />
-    <ul id="discussion">
-
-    </ul>
 </div>
 
 <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
@@ -52,30 +35,28 @@
 
 <script>
     var messages = document.getElementById("messages");
-    messages.scrollTop = messages.scrollHeight;
-
     var messageInput = document.getElementById("messageInput");
-    messageInput.value = "";
-    messageInput.focus();
+    messages.scrollTop = messages.scrollHeight;
     
     $(function () {
         var chat = $.connection.testHub;
-        chat.client.addNewMessageTest = function (name, message) {
-            $("#discussion").append("<li><strong>" + htmlEncode(name) + "</strong>: " + htmlEncode(message) + "</li>");
+        chat.client.addNewMessageToPage = function (name, message, time) {
+            $("#messages").append(
+                "<div class='message'>" +
+                    "<div class='message-icon'></div>" +
+                    "<div class='message-body'>" +
+                        "<div class='message-info'><strong>" + name + "</strong> <small>" + time + "</small></div>" +
+                        "<div class='message-body'>" + message + "</div>" + 
+                    "</div>" +
+                "</div>");
+            messageInput.focus();
+            messages.scrollTop = messages.scrollHeight;
         };
-        $("#displayname").val(prompt("enter your name:", ""));
-        $("#message").focus();
         $.connection.hub.start().done(function() {
-            $("#sendmessage").click(function () {
-                chat.server.send($("#displayname").val(), $("#message").val());
-                //$("#message").val()("").focus();
+            $("#sendMessage").click(function () {
+                chat.server.send($("#messageInput").val(), "@ViewBag.UserName");
+                messageInput.value = "";
             });
         });
     });
-
-    function htmlEncode(value) {
-        var encodedValue = $("<div />").text(value).html();
-        return encodedValue;
-    }
-
 </script>

@@ -2,44 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
 using Twilio;
 using Twilio.Rest.Chat.V2.Service.Channel;
-using KidCloudProject.Models;
 using Microsoft.AspNet.Identity;
+using KidCloudProject.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace KidCloudProject.Controllers
+namespace KidCloudProject.Hubs
 {
-    [Authorize]
-    public class MessagesController : Controller
+    public class ChatHub : Hub
     {
         const string accountSid = "AC383fc67c15e32582075da33d541fd388";
         const string authToken = "7915107c0ef796ad3d5a51fe2cdd0552";
         const string serviceSid = "IS9acc1cbb2d874347a95cacebfc5cd5aa";
-
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationUser User;
 
-        // GET: Messages
-        public ActionResult Index()
+        public void Send(string body, string userName)
         {
+            this.User = db.Users.Where(u => u.UserName == userName).First();
+
             TwilioClient.Init(accountSid, authToken);
 
             string channelSid = GetChannelId();
-
-            if (channelSid == null)
+            
+            if (channelSid != null && body != "" && body != null)
             {
-                return RedirectToAction("Login", "Account");
+                MessageResource.Create(serviceSid, channelSid, body, this.User.UserName);
             }
-
-            ViewBag.UserName = User.Identity.Name;
-            return View(MessageResource.Read(serviceSid, channelSid));
-            //return View();
+            //MessageResource.Read(serviceSid, channelSid)
+            Clients.All.addNewMessageToPage(userName, body, DateTime.Now.ToString("h:mm tt"));
         }
 
         private string GetChannelId()
         {
-            string userId = User.Identity.GetUserId();
+            string userId = this.User.Id;
 
             if (isUser("Admin"))
             {
@@ -64,22 +62,18 @@ namespace KidCloudProject.Controllers
 
         private bool isUser(string role)
         {
-            if (User.Identity.IsAuthenticated)
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var s = UserManager.GetRoles(this.User.Id);
+            if (s[0].ToString() == role)
             {
-                var user = User.Identity;
-                ApplicationDbContext context = new ApplicationDbContext();
-                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == role)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }
