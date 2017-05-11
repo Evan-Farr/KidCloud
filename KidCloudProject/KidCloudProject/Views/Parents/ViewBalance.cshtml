@@ -76,7 +76,7 @@
 
         <br />
 
-        <div id="paypal-button"></div>
+        <button class="btn btn-default" type="submit" onclick=@Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal", new { MoneyOwed = Model.MoneyOwed}, null)></button>
     </div>
 }
 <div>
