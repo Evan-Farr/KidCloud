@@ -9,19 +9,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayName("Name of Day Care")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StreetAddress)
+            @Html.DisplayName("Street Address")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayName("City")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayName("State")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
+            @Html.DisplayName("Zip Code")
         </th>
         <th></th>
     </tr>
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
-                @Html.ActionLink("View Details", "ApplyDetails", "DayCares", new { id = item.Id }, null) 
+                @Html.ActionLink("Check them out!", "ApplyDetails", "DayCares", new { id = item.Id }, null) 
             </td>
         </tr>
     }

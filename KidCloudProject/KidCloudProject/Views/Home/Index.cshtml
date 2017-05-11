@@ -23,7 +23,7 @@
         <p>We only accept the best, accredited day cares on Kid-Cloud. Enter your zipcode and choose the perfect day care near you!</p>
         @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
         {
-            @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "ZipCode" })
+            @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code" })
             @Html.ValidationMessageFor(model => model.ZipCode)
             <button class="btn btn-default" type="submit">Search</button>
         }

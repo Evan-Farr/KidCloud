@@ -1,4 +1,4 @@
-﻿
+﻿@model KidCloudProject.Models.DayCare
 @{
     ViewBag.Title = "Index";
 }
@@ -24,6 +24,17 @@ else if (ViewBag.displayMenu == "Parent")
         <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
         @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare*@
     </h3>
+    <br />
+    <hr />
+    <div class="col-md-4">
+        <h2>Find the right day care!</h2>
+        @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
+        {
+            @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code" })
+            @Html.ValidationMessageFor(model => model.ZipCode)
+            <button class="btn btn-default" type="submit">Search</button>
+        }
+    </div>
 }
 else if (ViewBag.displayMenu == "Employee")
 {

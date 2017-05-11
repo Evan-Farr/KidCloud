@@ -4,21 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Daily Report</h2>
 
 <div>
-    <h4>DailyReport</h4>
+    <h4>Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ChildId)
+            @Html.DisplayName("Child's Id")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ChildId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ReportDate)
+            @Html.DisplayName("Report Date")
         </dt>
 
         <dd>
@@ -26,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BathroomUse)
+            @Html.DisplayName("Bathroom")
         </dt>
 
         <dd>
@@ -34,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Meals)
+            @Html.DisplayName("Food")
         </dt>
 
         <dd>
@@ -42,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sleep)
+            @Html.DisplayName("Sleep")
         </dt>
 
         <dd>
@@ -50,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ActivityReport)
+            @Html.DisplayName("Activity")
         </dt>
 
         <dd>
@@ -58,7 +58,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SuppliesNeeds)
+            @Html.DisplayName("Bring Supplies")
         </dt>
 
         <dd>
@@ -66,7 +66,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Mood)
+            @Html.DisplayName("Mood")
         </dt>
 
         <dd>
@@ -74,7 +74,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MiscellaneousNotes)
+            @Html.DisplayName("Misc. Notes")
         </dt>
 
         <dd>
@@ -85,5 +85,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index") //Admin only*@
+    @Html.ActionLink("Back", "Index", "Users")
 </p>
