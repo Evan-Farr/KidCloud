@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "AddAnotherChild";
+}
+
+<h2>Child Successfully added!</h2>
+<br />
+<hr />
+<div>
+    @using (Html.BeginForm("Create", "Children", FormMethod.Get))
+    {
+        <button class="btn btn-default" type="submit">Register Another Child</button>
+    }
+</div>
+<hr />
+<div>
+    @using (Html.BeginForm("Index", "Users", FormMethod.Get))
+    {
+        <button class="btn btn-default" type="submit">Done</button>
+    }
+</div>
+<hr />
+

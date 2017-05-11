@@ -56,7 +56,7 @@ namespace KidCloudProject.Controllers
                 parent.UserId = same;
                 db.Parents.Add(parent);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Children"/*, new { ParentId = ViewBag.Id }, null*/);
+                return RedirectToAction("Create", "Children");
             }
 
             return View(parent);
@@ -142,7 +142,12 @@ namespace KidCloudProject.Controllers
             return View(parent);
         }
 
-        public ActionResult SendApplication(int? id, int dayCareId)
+        public ActionResult AddAnotherChild()
+        {
+            return View();
+        }
+
+        public ActionResult SendApplication(int? id, int? dayCareId)
         {
             if (id == null)
             {
@@ -158,5 +163,32 @@ namespace KidCloudProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Users");
         }
+
+        //public ActionResult Apply(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Parent parent = db.Parents.Find(id);
+        //    if (parent == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(parent);
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Apply([Bind(Include = "Id,FirstName,LastName,Age,StreetAddress,City,State,ZipCode,Phone,Email,NumberOfChildren,MoneyOwed,Children")] Parent parent)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(parent).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index", "Users");
+        //    }
+        //    return View(parent);
+        //}
     }
 }

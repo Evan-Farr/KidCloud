@@ -10,8 +10,8 @@
         <li>@Html.ActionLink("View Parents", "Index", "Parents")</li>
         <li>@Html.ActionLink("View Children", "Index", "Children")</li>
         <li>@Html.ActionLink("View Employees", "Index", "Employees")</li>
-        <li>@Html.ActionLink("View Day-Cares", "Index", "DayCares")</li>
-        <li>@Html.ActionLink("View Daily Reports", "Index", "DailyReports")</li>
+        <li>@Html.ActionLink("View Day Cares", "Index", "DayCares")</li>
+        @*<li>@Html.ActionLink("View Daily Reports", "Index", "DailyReports")</li> //this should in View Day-Cares*@
     </h3>
 }
 else if (ViewBag.displayMenu == "Parent")
@@ -19,9 +19,10 @@ else if (ViewBag.displayMenu == "Parent")
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <h3>
         <li>@Html.ActionLink("My Account", "Details", "Parents", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("My Day-Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("My Current Balance", "ViewBalance", "Parents", new { id = ViewBag.Id }, null)</li>
+        <hr />
+        <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
+        @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare*@
     </h3>
 }
 else if (ViewBag.displayMenu == "Employee")
@@ -29,10 +30,12 @@ else if (ViewBag.displayMenu == "Employee")
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <h3>
         <li>@Html.ActionLink("My Account", "Details", "Employees", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <hr />
+        <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
+        @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View My DayCare", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>*@
+        @*//all three of these should be in the My DareCare*@
     </h3>
 }
 else if (ViewBag.displayMenu == "DayCare")
@@ -40,14 +43,16 @@ else if (ViewBag.displayMenu == "DayCare")
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <h3>
         <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <br />
+        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
+        <hr />
+        <li>@Html.ActionLink("Manage Pending Applications", "IndexApplications", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <hr />
         <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View Pending Applications", "IndexApplications", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <br />
+        <hr />
         <li>@Html.ActionLink("Create New Daily Report", "Create", "DailyReports", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("View All Daily Reports", "Index", "DailyReports", new { id = ViewBag.Id }, null)</li>
     </h3>
 }
 
