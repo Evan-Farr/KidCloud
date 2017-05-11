@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -164,6 +164,11 @@ namespace KidCloudProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             return View(db.DayCares.Where(p => p.ZipCode == zipCode).ToList());
+        }
+
+        public ActionResult Calendar()
+        {
+            return View();
         }
     }
 }
