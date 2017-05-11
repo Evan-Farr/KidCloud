@@ -47,7 +47,7 @@ namespace KidCloudProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,HasAllergies,AllergiesDetails,TakesMedications,MedicationInstructions,HasSpecialFoodRequirements,FoodRequirementsInstructions,IsSpecialNeeds,SpecialNeedsType,SpecialNeedsRequirements")] Child child)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,HalfDay,FullDay,HasAllergies,AllergiesDetails,TakesMedications,MedicationInstructions,HasSpecialFoodRequirements,FoodRequirementsInstructions,IsSpecialNeeds,SpecialNeedsType,SpecialNeedsRequirements")] Child child)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace KidCloudProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Age,HasAllergies,AllergiesDetails,TakesMedications,MedicationInstructions,HasSpecialFoodRequirements,FoodRequirementsInstructions,IsSpecialNeeds,SpecialNeedsType,SpecialNeedsRequirements")] Child child)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Age,HalfDay,FullDay,HasAllergies,AllergiesDetails,TakesMedications,MedicationInstructions,HasSpecialFoodRequirements,FoodRequirementsInstructions,IsSpecialNeeds,SpecialNeedsType,SpecialNeedsRequirements")] Child child)
         {
             if (ModelState.IsValid)
             {

@@ -21,6 +21,12 @@
             @Html.DisplayNameFor(model => model.Age)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.HalfDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullDay)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.HasAllergies)
         </th>
         <th>
@@ -39,7 +45,7 @@
             @Html.DisplayNameFor(model => model.FoodRequirementsInstructions)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsSpecialNeeds)
+            @Html.DisplayNameFor(model => model.HasSpecialNeeds)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SpecialNeedsType)
@@ -62,6 +68,12 @@
             @Html.DisplayFor(modelItem => item.Age)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.HalfDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullDay)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.HasAllergies)
         </td>
         <td>
@@ -80,7 +92,7 @@
             @Html.DisplayFor(modelItem => item.FoodRequirementsInstructions)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsSpecialNeeds)
+            @Html.DisplayFor(modelItem => item.HasSpecialNeeds)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SpecialNeedsType)

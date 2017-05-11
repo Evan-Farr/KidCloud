@@ -91,6 +91,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.DailyRatePerChild)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DailyRatePerChild)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CurrentlyAcceptingApplicants)
         </dt>
 
@@ -102,5 +110,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index") //should only be visible for admin*@
+    @Html.ActionLink("Back", "Index", "Users")
 </p>

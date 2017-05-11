@@ -35,6 +35,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.HalfDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HalfDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullDay)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.HasAllergies)
         </dt>
 
@@ -83,11 +99,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsSpecialNeeds)
+            @Html.DisplayNameFor(model => model.HasSpecialNeeds)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsSpecialNeeds)
+            @Html.DisplayFor(model => model.HasSpecialNeeds)
         </dd>
 
         <dt>
@@ -110,5 +126,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")//only be visible for admin*@
+    @Html.ActionLink("Back", "Index", "Users")
 </p>

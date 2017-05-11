@@ -22,6 +22,10 @@ namespace KidCloudProject.Models
         [Required]
         public string Age { get; set; }
         [Required]
+        public bool HalfDay { get; set; }
+        [Required]
+        public bool FullDay { get; set; }
+        [Required]
         public bool HasAllergies { get; set; }
         [DataType(DataType.MultilineText)]
         public string AllergiesDetails { get; set; }
@@ -41,6 +45,5 @@ namespace KidCloudProject.Models
 
 
         public virtual ICollection<Parent> Parents { get; set; }
-        public virtual ApplicationUser UserId { get; set; }
     }
 }
