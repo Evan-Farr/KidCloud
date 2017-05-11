@@ -4,27 +4,57 @@
     ViewBag.UnreadMessageCount = 0;
 }
 
-<div class="">
-    <div class="messages-container">
-        <div class="messages" id="messages">
-            @foreach (var m in Model)
-            {
-                <div class="message">
-                    <div class="message-icon">
+<h3>@ViewBag.DayCareName - Group Chat</h3>
 
-                    </div>
-                    <div class="message-body">
-                        <div class="message-info"><strong>@m.From</strong> <small>@m.DateCreated.Value.ToLocalTime().ToString("h:mm tt")</small></div>
-                        <div class="message-text">@m.Body</div>
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-1">
+            <div class="channels-container">
+                <div class="channels">
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
+                    <div class="channel"></div>
                 </div>
-            }
+            </div>
         </div>
-        <div class="input-group">
-            @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100", @id = "messageInput" })
-            <span class="input-group-btn">
-                <input class="btn btn-default border-top-radius-none" type="submit" value="Send" id="sendMessage">
-            </span>
+        <div class="border-left col-lg-11">
+            <div class="messages-container">
+                <div class="messages" id="messages">
+                    @foreach (var m in Model)
+                    {
+                        <div class="message">
+                            <div class="message-icon">
+
+                            </div>
+                            <div class="message-body">
+                                <div class="message-info"><strong>@m.From</strong> <small>@m.DateCreated.Value.ToLocalTime().ToString("h:mm tt")</small></div>
+                                <div class="message-text">@m.Body</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="input-group">
+                    @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100", @id = "messageInput" })
+                    <span class="input-group-btn">
+                        <input class="btn btn-default border-top-radius-none" type="submit" value="Send" id="sendMessage">
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -40,6 +70,7 @@
 
     window.onfocus = function() {
         document.title = "Group Chat";
+        unreadMessageCount = 0;
     }
     
     $(function () {
@@ -63,6 +94,13 @@
             $("#sendMessage").click(function () {
                 chat.server.send($("#messageInput").val(), "@ViewBag.UserName");
                 messageInput.value = "";
+            });
+            $("#messageInput").keypress(function (e) {
+                if (e.which == 13) {
+                    chat.server.send($("#messageInput").val(), "@ViewBag.UserName");
+                    messageInput.value = "";
+                    return false;
+                }
             });
         });
     });

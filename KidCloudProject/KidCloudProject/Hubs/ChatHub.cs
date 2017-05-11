@@ -29,10 +29,16 @@ namespace KidCloudProject.Hubs
             
             if (channelSid != null && body != "" && body != null)
             {
-                MessageResource.Create(serviceSid, channelSid, body, this.User.UserName);
+                try
+                {
+                    MessageResource.Create(serviceSid, channelSid, body, this.User.UserName);
+                    Clients.All.addNewMessageToPage(userName, body, DateTime.Now.ToString("h:mm tt"));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
-            //MessageResource.Read(serviceSid, channelSid)
-            Clients.All.addNewMessageToPage(userName, body, DateTime.Now.ToString("h:mm tt"));
         }
 
         private string GetChannelId()

@@ -48,14 +48,17 @@ namespace KidCloudProject.Controllers
             }
             else if (isUser("DayCare"))
             {
+                ViewBag.DayCareName = db.DayCares.Where(e => e.UserId.Id == userId).First().Name;
                 return db.DayCares.Where(e => e.UserId.Id == userId).First().ChannelId;
             }
             else if (isUser("Employee"))
             {
+                ViewBag.DayCareName = db.Employees.Where(e => e.UserId.Id == userId).First().DayCareId.Name;
                 return db.Employees.Where(e => e.UserId.Id == userId).First().DayCareId.ChannelId;
             }
             else if (isUser("Parent"))
             {
+                ViewBag.DayCareName = db.Parents.Where(e => e.UserId.Id == userId).First().DayCareId.Name;
                 return db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId.ChannelId;
             }
 

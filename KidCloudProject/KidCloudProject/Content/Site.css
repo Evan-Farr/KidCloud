@@ -28,11 +28,61 @@ textarea {
 }
 
 .messages {
-    max-height: 500px;
-    overflow-y: scroll;
+    height: 500px;
+    overflow-y: auto;
 }
 
 .message {
     padding: 12px;
+    margin: 0 12px;
     border-top: 1px solid #ccc;
+}
+
+.message-icon {
+    width: 48px;
+    height: 48px;
+    background: #00aaff;
+    border-radius: 4px;
+    float: left;
+}
+
+.message-body {
+    overflow: hidden;
+    margin-left: 54px;
+    min-height: 48px;
+}
+
+.border-left {
+    border-left: none;
+}
+
+.channels-container {
+    width: 100%;
+    height: 534px;
+    overflow: hidden;
+}
+
+.channels {
+    height: 100%;
+    margin-right: -17px;
+    overflow-y: scroll;
+}
+
+.channel {
+    height: 48px;
+    width: 48px;
+    border-radius: 100%;
+    background: #aa00ff;
+    display: inline;
+    margin: 6px;
+}
+
+@media (min-width: 1200px) {
+    .border-left {
+        border-left: 1px solid #ccc;
+    }
+    .channel {
+        display: block;
+        margin:6px auto;
+    }
 }
