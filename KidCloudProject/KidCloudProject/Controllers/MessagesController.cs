@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace KidCloudProject.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class MessagesController : Controller
     {
         const string accountSid = "AC383fc67c15e32582075da33d541fd388";
@@ -46,7 +46,7 @@ namespace KidCloudProject.Controllers
 
             if (channelSid == null)
             {
-                RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Account");
             }
 
             if (body != "" || body != null)

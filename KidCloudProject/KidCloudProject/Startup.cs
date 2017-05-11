@@ -14,6 +14,7 @@ namespace KidCloudProject
         {
             ConfigureAuth(app);
             CreateRolesAndUsers();
+            app.MapSignalR();
         }
 
         private void CreateRolesAndUsers()
