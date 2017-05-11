@@ -8,6 +8,7 @@ using Twilio.Rest.Chat.V2.Service.Channel;
 using KidCloudProject.Models;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace KidCloudProject.Controllers
 {
@@ -29,7 +30,7 @@ namespace KidCloudProject.Controllers
 
             if (channelSid == null)
             {
-                RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Account");
             }
 
             return View(MessageResource.Read(serviceSid, channelSid));
@@ -48,35 +49,57 @@ namespace KidCloudProject.Controllers
                 RedirectToAction("Login", "Account");
             }
 
-            MessageResource.Create(serviceSid, channelSid, body, User.Identity.Name);
+            if (body != "" || body != null)
+            {
+                MessageResource.Create(serviceSid, channelSid, body, User.Identity.Name);
+            }
 
             return View(MessageResource.Read(serviceSid, channelSid));
         }
 
         private string GetChannelId()
         {
-            string[] userRoles = Roles.GetRolesForUser(User.Identity.Name);
             string userId = User.Identity.GetUserId();
             
-            if (userRoles.Contains("Admin"))
+            if (isUser("Admin"))
             {
                 //channelSid = db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId.ChannelId;
                 return null;
             }
-            else if (userRoles.Contains("DayCare"))
+            else if (isUser("DayCare"))
             {
                 return db.DayCares.Where(e => e.UserId.Id == userId).First().ChannelId;
             }
-            else if (userRoles.Contains("Employee"))
+            else if (isUser("Employee"))
             {
                 return db.Employees.Where(e => e.UserId.Id == userId).First().DayCareId.ChannelId;
             }
-            else if (userRoles.Contains("Parent"))
+            else if (isUser("Parent"))
             {
                 return db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId.ChannelId;
             }
 
             return null;
+        }
+
+        private bool isUser(string role)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == role)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

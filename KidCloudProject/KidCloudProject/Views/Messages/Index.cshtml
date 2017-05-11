@@ -7,10 +7,10 @@
 
 <div class="">
     <div class="messages-container">
-        <div class="messages">
+        <div class="messages" id="messages">
             @foreach (var m in Model)
             {
-                <div class="message">
+                <div class="message" id="@m.Sid">
                     <div class="message-icon">
 
                     </div>
@@ -27,7 +27,7 @@
             @Html.AntiForgeryToken()
 
             <div class="input-group">
-                @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100" })
+                @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100", @id = "messageInput" })
                 <span class="input-group-btn">
                     <input class="btn btn-default border-top-radius-none" type="submit" value="Send">
                 </span>
@@ -35,3 +35,12 @@
         }
     </div>
 </div>
+<script>
+    var messages = document.getElementById("messages");
+    messages.scrollTop = messages.scrollHeight;
+
+    var messageInput = document.getElementById("messageInput");
+    messageInput.value = "";
+    messageInput.focus();
+    
+</script>
