@@ -102,5 +102,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")  // only the admin should have this view choice*@
+    @Html.ActionLink("Back", "Index", "Users")
 </p>

@@ -51,12 +51,13 @@ namespace KidCloudProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var holder = User.Identity.GetUserId();
-                var same = db.Users.Where(s => s.Id == holder).FirstOrDefault();
-                child.UserId = same;
+                var person = User.Identity.GetUserId();
+                Parent parent = db.Parents.Where(u => u.UserId.Id == person).Select(s => s).FirstOrDefault();
+                child.Parents.Add(parent);
+                parent.Children.Add(child);
                 db.Children.Add(child);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("AddAnotherChild", "Parents");
             }
 
             return View(child);

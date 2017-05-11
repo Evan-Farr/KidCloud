@@ -493,6 +493,7 @@
     <Content Include="Views\PayPal\SuccessView.cshtml" />
     <Content Include="Views\PayPal\FailureView.cshtml" />
     <Content Include="Views\PayPal\PaymentWithPaypal.cshtml" />
+    <Content Include="Views\Parents\AddAnotherChild.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

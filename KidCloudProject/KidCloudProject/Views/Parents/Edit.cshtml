@@ -90,19 +90,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfChildren, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumberOfChildren, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumberOfChildren, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.MoneyOwed, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MoneyOwed, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MoneyOwed, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.NumberOfChildren, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumberOfChildren, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
@@ -114,7 +111,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index") //this should only be viewable for admin*@
+    @Html.ActionLink("Back", "Index", "Users")
 </div>
 
 @section Scripts {
