@@ -36,6 +36,20 @@ namespace KidCloudProject.Controllers
             return View(parent);
         }
 
+        public ActionResult Application(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Parent parent = db.Parents.Find(id);
+            if (parent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(parent);
+        }
+
         // GET: Parents/Create
         public ActionResult Create()
         {
@@ -147,48 +161,18 @@ namespace KidCloudProject.Controllers
             return View();
         }
 
-        public ActionResult SendApplication(int? id, int? dayCareId)
+        public ActionResult SendApplication(int? dayCareId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Parent parent = db.Parents.Find(id);
+            var user = User.Identity.GetUserId();
+            Parent parent = db.Parents.Where(a => a.UserId.Id == user).Select(s => s).FirstOrDefault();
             if (parent == null)
             {
                 return RedirectToAction("Register", "Account"); 
             }
-            var sendTo = db.DayCares.Where(s => s.Id == dayCareId).Select(p => p).FirstOrDefault();
+            var sendTo = db.DayCares.Where(k => k.Id == dayCareId).Select(p => p).FirstOrDefault();
             sendTo.PendingApplications.Add(parent);
             db.SaveChanges();
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "Users"); //send confirmation page first maybe that says success or fail
         }
-
-        //public ActionResult Apply(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Parent parent = db.Parents.Find(id);
-        //    if (parent == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(parent);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Apply([Bind(Include = "Id,FirstName,LastName,Age,StreetAddress,City,State,ZipCode,Phone,Email,NumberOfChildren,MoneyOwed,Children")] Parent parent)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(parent).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index", "Users");
-        //    }
-        //    return View(parent);
-        //}
     }
 }

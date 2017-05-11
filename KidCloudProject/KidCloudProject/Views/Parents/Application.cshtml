@@ -1,0 +1,106 @@
+﻿@model KidCloudProject.Models.Parent
+@{
+    ViewBag.Title = "Application";
+}
+
+<h2>Application</h2>
+
+<div>
+    <h4>Parent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("First Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Last Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Age")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Street Address")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("City")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("State")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Zip Code")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Phone #")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Email")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("# of Children")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfChildren)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+@using (Html.BeginForm("AcceptApplication", "DayCares", new { applicationId = Model.Id }, FormMethod.Post, null))
+{
+    <button class="btn btn-default" type="submit">Accept</button>
+}
+@using (Html.BeginForm("DenyApplication", "DayCares", new { applicationId = Model.Id }, FormMethod.Post, null))
+{
+    <button class="btn btn-default" type="submit">Deny</button>
+}
+<hr />
+<p>
+    @Html.ActionLink("Back", "Index", "Users")
+</p>

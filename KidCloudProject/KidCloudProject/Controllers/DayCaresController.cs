@@ -168,7 +168,36 @@ namespace KidCloudProject.Controllers
 
         public ActionResult Calendar()
         {
+
             return View();
+        }
+
+        public ActionResult ViewPendingApplications()
+        {
+            var user = User.Identity.GetUserId();
+            return View(db.DayCares.Where(u => u.UserId.Id == user).Select(s => s.PendingApplications).First().ToList());
+        }
+
+        public ActionResult AcceptApplication(int applicationId)
+        {
+            var user = User.Identity.GetUserId();
+            var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
+            DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+            dayCare.Parents.Add(parent);
+            dayCare.Children.ToList().AddRange(db.Children.Where(o => o.Parents.Contains(parent)).Select(k => k).ToList());
+            dayCare.PendingApplications.Remove(parent);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Users"); //maybe redirect to confirmation page or back to pending applications? 
+        }
+
+        public ActionResult DenyApplication(int applicationId)
+        {
+            var user = User.Identity.GetUserId();
+            var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
+            DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+            dayCare.PendingApplications.Remove(parent);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Users"); //maybe redirect to confirmation page or back to pending applications? 
         }
     }
 }

@@ -111,13 +111,12 @@
 <p>
     <hr />
     <div>
-        @using (Html.BeginForm("SendApplication", "Parents", FormMethod.Post))
+        @using (Html.BeginForm("SendApplication", "Parents", new { dayCareId = Model.Id }, FormMethod.Post, null))
         {
             <button class="btn btn-default" type="submit">Apply To This Day Care!</button>
         }
     </div>
-    @*<button class="btn btn-default" type="submit" onClick=@Html.ActionLink("Apply Here Now!", "SendApplication", "Parents", new { id = User.Identity.Name, dayCareId = Model.Id }, null)></button>*@
-    <br />
     <hr />
+    <br />
     @Html.ActionLink("Done", "Index", "Users")
 </p>
