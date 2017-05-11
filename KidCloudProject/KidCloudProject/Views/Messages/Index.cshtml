@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<Twilio.Rest.Chat.V2.Service.Channel.MessageResource>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Group Chat";
+    ViewBag.UnreadMessageCount = 0;
 }
-
-<h2>Index</h2>
 
 <div class="">
     <div class="messages-container">
@@ -37,9 +36,14 @@
     var messages = document.getElementById("messages");
     var messageInput = document.getElementById("messageInput");
     messages.scrollTop = messages.scrollHeight;
+    var unreadMessageCount = 0;
+
+    window.onfocus = function() {
+        document.title = "Group Chat";
+    }
     
     $(function () {
-        var chat = $.connection.testHub;
+        var chat = $.connection.chatHub;
         chat.client.addNewMessageToPage = function (name, message, time) {
             $("#messages").append(
                 "<div class='message'>" +
@@ -51,6 +55,9 @@
                 "</div>");
             messageInput.focus();
             messages.scrollTop = messages.scrollHeight;
+            if (!document.hasFocus()) {
+                document.title = "(" + ++unreadMessageCount + ") Group Chat";
+            }
         };
         $.connection.hub.start().done(function() {
             $("#sendMessage").click(function () {
