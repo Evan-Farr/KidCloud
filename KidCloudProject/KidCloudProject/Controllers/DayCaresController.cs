@@ -200,29 +200,31 @@ namespace KidCloudProject.Controllers
             return View(db.DayCares.Where(u => u.UserId.Id == user).Select(s => s.PendingApplications).First().ToList());
         }
 
-        public ActionResult AcceptApplication(int applicationId)
+        public ActionResult AcceptApplication(int? applicationId)
         {
             var user = User.Identity.GetUserId();
-            var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
+            var application = db.Applications.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
-            dayCare.Parents.Add(parent);
+            dayCare.Parents.Add(application.Parent);
             var kids = new List<Child>();
-            foreach (var kid in parent.Children)
+            foreach (var kid in application.Parent.Children)
             {
                 dayCare.Children.Add(kid);
             }
-            //dayCare.PendingApplications.Remove(parent);
+            application.Status = "Approved";
+            dayCare.PendingApplications.Remove(application);
             db.SaveChanges();
             TempData["Message"] = "**Successfully added a new family to your day care!";
             return RedirectToAction("ViewPendingApplications");
         }
 
-        public ActionResult DenyApplication(int applicationId)
+        public ActionResult DenyApplication(int? applicationId)
         {
             var user = User.Identity.GetUserId();
-            var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
+            var application = db.Applications.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
-            //dayCare.PendingApplications.Remove(parent);
+            dayCare.PendingApplications.Remove(application);
+            application.Status = "Denied";
             db.SaveChanges();
             TempData["Message"] = "**Application has been removed from your pending applications.";
             return RedirectToAction("ViewPendingApplications");
