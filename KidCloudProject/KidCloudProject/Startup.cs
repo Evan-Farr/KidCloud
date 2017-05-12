@@ -4,17 +4,22 @@ using Microsoft.Owin;
 using Owin;
 using System;
 using System.Linq;
+using KidCloudProject.Models;
 
 [assembly: OwinStartupAttribute(typeof(KidCloudProject.Startup))]
 namespace KidCloudProject
 {
     public partial class Startup
     {
+        DateTime currentDate = DateTime.Now;
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
             CreateRolesAndUsers();
             app.MapSignalR();
+            CreateInvoice();
         }
 
         private void CreateRolesAndUsers()
@@ -61,5 +66,52 @@ namespace KidCloudProject
                 roleManager.Create(role);
             }
         }
+
+        public void CreateInvoice()
+        {
+            double halfDayCharge;
+            decimal childTotal;
+
+            if (currentDate.Day == 12)
+            {
+                var invoiceAccounts = db.DayCares.Select(d => d.Parents).ToList();
+
+                foreach (var listOfParents in invoiceAccounts)
+                {
+                    foreach (var parent in listOfParents)
+                    {
+                        if (parent.DayCare != null)
+                        {
+                            if (parent.MoneyOwed == null)
+                            {
+                                parent.MoneyOwed = 0;
+                            }
+                            var dayCareCharge = parent.DayCare.DailyRatePerChild;
+                            var listOfChildren = parent.Children;
+                            foreach (var child in listOfChildren)
+                            {
+                                if (child.HalfDay == true)
+                                {
+                                    halfDayCharge = dayCareCharge / 2;
+                                    childTotal = System.Convert.ToDecimal(halfDayCharge * 22);
+                                    parent.MoneyOwed += childTotal;
+                                    break;     
+                                }
+                                else if(child.FullDay == true)
+                                {
+                                    childTotal = System.Convert.ToDecimal(dayCareCharge * 22);
+                                    parent.MoneyOwed += childTotal;
+                                    break;
+                                }
+                                    
+                            }
+                        }
+                    }
+                }
+            }
+            db.SaveChanges();
+        }
+
+
     }
 }
