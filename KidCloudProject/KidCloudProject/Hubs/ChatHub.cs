@@ -47,7 +47,7 @@ namespace KidCloudProject.Hubs
 
             if (isUser("Admin"))
             {
-                //channelSid = db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId.ChannelId;
+                //channelSid = db.Parents.Where(p => p.UserId.Id == userId).First().DayCare.ChannelId;
                 return null;
             }
             else if (isUser("DayCare"))
@@ -60,7 +60,7 @@ namespace KidCloudProject.Hubs
             }
             else if (isUser("Parent"))
             {
-                return db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId.ChannelId;
+                return db.Parents.Where(p => p.UserId.Id == userId).First().DayCare.ChannelId;
             }
 
             return null;

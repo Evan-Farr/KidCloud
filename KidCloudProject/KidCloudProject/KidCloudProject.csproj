@@ -239,60 +239,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201705091958566_added parent model.cs" />
-    <Compile Include="Migrations\201705091958566_added parent model.Designer.cs">
-      <DependentUpon>201705091958566_added parent model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705092017315_added DayCare model.cs" />
-    <Compile Include="Migrations\201705092017315_added DayCare model.Designer.cs">
-      <DependentUpon>201705092017315_added DayCare model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705092027171_added Employee model.cs" />
-    <Compile Include="Migrations\201705092027171_added Employee model.Designer.cs">
-      <DependentUpon>201705092027171_added Employee model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705092040318_finished all models.cs" />
-    <Compile Include="Migrations\201705092040318_finished all models.Designer.cs">
-      <DependentUpon>201705092040318_finished all models.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705092052162_added dailyreports model and dailyreports list to daycare.cs" />
-    <Compile Include="Migrations\201705092052162_added dailyreports model and dailyreports list to daycare.Designer.cs">
-      <DependentUpon>201705092052162_added dailyreports model and dailyreports list to daycare.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705092101311_changed phone in 3 models to string.cs" />
-    <Compile Include="Migrations\201705092101311_changed phone in 3 models to string.Designer.cs">
-      <DependentUpon>201705092101311_changed phone in 3 models to string.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705101458098_created junction table for parents and children.cs" />
-    <Compile Include="Migrations\201705101458098_created junction table for parents and children.Designer.cs">
-      <DependentUpon>201705101458098_created junction table for parents and children.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705101506232_added daycare to dailyReport and employee.cs" />
-    <Compile Include="Migrations\201705101506232_added daycare to dailyReport and employee.Designer.cs">
-      <DependentUpon>201705101506232_added daycare to dailyReport and employee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705101629354_not sure what changed.cs" />
-    <Compile Include="Migrations\201705101629354_not sure what changed.Designer.cs">
-      <DependentUpon>201705101629354_not sure what changed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705102046185_added ChannelId to DayCare model.cs" />
-    <Compile Include="Migrations\201705102046185_added ChannelId to DayCare model.Designer.cs">
-      <DependentUpon>201705102046185_added ChannelId to DayCare model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705102116579_added list of pendingapplications to daycare.cs" />
-    <Compile Include="Migrations\201705102116579_added list of pendingapplications to daycare.Designer.cs">
-      <DependentUpon>201705102116579_added list of pendingapplications to daycare.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705111649570_added half and full day option on child and daily rate on daycare.cs" />
-    <Compile Include="Migrations\201705111649570_added half and full day option on child and daily rate on daycare.Designer.cs">
-      <DependentUpon>201705111649570_added half and full day option on child and daily rate on daycare.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705121244031_Added DirectMessageChannel.cs" />
-    <Compile Include="Migrations\201705121244031_Added DirectMessageChannel.Designer.cs">
-      <DependentUpon>201705121244031_Added DirectMessageChannel.cs</DependentUpon>
+    <Compile Include="Migrations\201705121723361_new first start.cs" />
+    <Compile Include="Migrations\201705121723361_new first start.Designer.cs">
+      <DependentUpon>201705121723361_new first start.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\DailyReport.cs" />
@@ -519,6 +472,8 @@
     <Content Include="Views\DayCares\IndexChildren.cshtml" />
     <Content Include="Views\Parents\PrivateDetails.cshtml" />
     <Content Include="Views\Children\PrivateDetails.cshtml" />
+    <Content Include="Views\Parents\Application.cshtml" />
+    <Content Include="Views\DayCares\ViewPendingApplications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -532,44 +487,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705091958566_added parent model.resx">
-      <DependentUpon>201705091958566_added parent model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705092017315_added DayCare model.resx">
-      <DependentUpon>201705092017315_added DayCare model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705092027171_added Employee model.resx">
-      <DependentUpon>201705092027171_added Employee model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705092040318_finished all models.resx">
-      <DependentUpon>201705092040318_finished all models.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705092052162_added dailyreports model and dailyreports list to daycare.resx">
-      <DependentUpon>201705092052162_added dailyreports model and dailyreports list to daycare.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705092101311_changed phone in 3 models to string.resx">
-      <DependentUpon>201705092101311_changed phone in 3 models to string.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705101458098_created junction table for parents and children.resx">
-      <DependentUpon>201705101458098_created junction table for parents and children.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705101506232_added daycare to dailyReport and employee.resx">
-      <DependentUpon>201705101506232_added daycare to dailyReport and employee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705101629354_not sure what changed.resx">
-      <DependentUpon>201705101629354_not sure what changed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705102046185_added ChannelId to DayCare model.resx">
-      <DependentUpon>201705102046185_added ChannelId to DayCare model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705102116579_added list of pendingapplications to daycare.resx">
-      <DependentUpon>201705102116579_added list of pendingapplications to daycare.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705111649570_added half and full day option on child and daily rate on daycare.resx">
-      <DependentUpon>201705111649570_added half and full day option on child and daily rate on daycare.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705121244031_Added DirectMessageChannel.resx">
-      <DependentUpon>201705121244031_Added DirectMessageChannel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705121723361_new first start.resx">
+      <DependentUpon>201705121723361_new first start.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

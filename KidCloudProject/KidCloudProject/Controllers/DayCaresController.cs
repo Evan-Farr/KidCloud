@@ -211,8 +211,7 @@ namespace KidCloudProject.Controllers
             {
                 dayCare.Children.Add(kid);
             }
-            parent.DayCareId.Id = dayCare.Id;
-            dayCare.PendingApplications.Remove(parent);
+            //dayCare.PendingApplications.Remove(parent);
             db.SaveChanges();
             TempData["Message"] = "**Successfully added a new family to your day care!";
             return RedirectToAction("ViewPendingApplications");
@@ -223,7 +222,7 @@ namespace KidCloudProject.Controllers
             var user = User.Identity.GetUserId();
             var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
-            dayCare.PendingApplications.Remove(parent);
+            //dayCare.PendingApplications.Remove(parent);
             db.SaveChanges();
             TempData["Message"] = "**Application has been removed from your pending applications.";
             return RedirectToAction("ViewPendingApplications");
