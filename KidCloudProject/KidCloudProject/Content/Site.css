@@ -118,3 +118,14 @@ textarea {
 .channel:active {
     box-shadow: 0 0 6px 1px #00aaff
 }
+
+.paypal {
+    background: #0e3cc3;
+    padding: 10px;
+    border-radius: 15px;
+    width: 180px;
+}
+
+.paypal a {
+    color: #fff;
+}
