@@ -66,6 +66,7 @@ else if (ViewBag.displayMenu == "DayCare")
     <div class="col-md-10">
         <div class="text-success">
             @TempData["Message"]
+            @TempData["ErrorMessage"]
         </div>
     </div>
     <hr />
@@ -79,8 +80,16 @@ else if (ViewBag.displayMenu == "DayCare")
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
         <hr />
-        <li>@Html.ActionLink("Create New Daily Report", "Create", "DailyReports", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View All Daily Reports", "Index", "DailyReports", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, null)</li>
+        @*<li>@Html.ActionLink("Create New Daily Report", "ChooseChild", "DayCares", new { id = GetChoice() }, null)</li>*@
+        <li>
+            @using (Html.BeginForm("Create", "DailyReports", FormMethod.Post))
+            {
+                var user = User.Identity;
+                @Html.DropDownListFor(Model => Model.Children, Model.Children.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "Select Child")
+                <button class="btn btn-default" type="submit">Create New Daily Report</button>
+            }
+        </li>
     </h3>
 }
 
