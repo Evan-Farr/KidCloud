@@ -27,6 +27,30 @@ textarea {
     max-width: 100%;
 }
 
+.dateDivider {
+  width: 100%;
+  text-align: center;
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.dateDivider::before, .dateDivider::after{
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #ccc;
+  margin: auto;
+}
+
+.dateDivider::before {
+  margin-right: 12px;
+}
+.dateDivider::after {
+  margin-left: 12px;
+}
+
+
 .messages {
     height: 500px;
     overflow-y: auto;
@@ -41,7 +65,7 @@ textarea {
 .message-icon {
     width: 48px;
     height: 48px;
-    background: #00aaff;
+    background: #00aaff url("Images/Icon-Profile-Default.svg");
     border-radius: 4px;
     float: left;
 }
@@ -51,15 +75,20 @@ textarea {
     margin-left: 54px;
     min-height: 48px;
 }
+.messages-container {
+    padding-left: 80px;
+}
 
 .border-left {
     border-left: none;
 }
 
 .channels-container {
-    width: 100%;
+    width: 66px;
     height: 534px;
     overflow: hidden;
+    float: left;
+    border-right: 1px solid #ccc;
 }
 
 .channels {
@@ -73,16 +102,19 @@ textarea {
     width: 48px;
     border-radius: 100%;
     background: #aa00ff;
-    display: inline;
-    margin: 6px;
+    margin:6px auto;
+}   
+
+.channel-create-btn {
+    border: 1.5px dashed #000;
+    background: #fff url("Images/Icon-Plus.svg");
+    opacity: 0.3;
+}
+.channel-create-btn:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 
-@media (min-width: 1200px) {
-    .border-left {
-        border-left: 1px solid #ccc;
-    }
-    .channel {
-        display: block;
-        margin:6px auto;
-    }
+.channel:active {
+    box-shadow: 0 0 6px 1px #00aaff
 }

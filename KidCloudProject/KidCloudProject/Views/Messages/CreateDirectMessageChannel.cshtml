@@ -1,0 +1,13 @@
+﻿@model IEnumerable<KidCloudProject.Models.ApplicationUser>
+@{
+    ViewBag.Title = "CreateDirectMessageChannel";
+}
+
+<h2>CreateDirectMessageChannel</h2>
+
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
