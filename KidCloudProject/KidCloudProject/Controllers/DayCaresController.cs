@@ -184,7 +184,11 @@ namespace KidCloudProject.Controllers
             var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
             dayCare.Parents.Add(parent);
-            dayCare.Children.ToList().AddRange(db.Children.Where(o => o.Parents.Contains(parent)).Select(k => k).ToList());
+            var kids = db.Children.Where(o => o.Parents.Contains(parent)).ToList();
+            foreach (var kid in kids)
+            {
+                dayCare.Children.Add(kid);
+            }
             dayCare.PendingApplications.Remove(parent);
             db.SaveChanges();
             return RedirectToAction("Index", "Users"); //maybe redirect to confirmation page or back to pending applications? 

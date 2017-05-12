@@ -174,5 +174,21 @@ namespace KidCloudProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Users"); //send confirmation page first maybe that says success or fail
         }
+
+        public ActionResult ViewChildren(int? id)
+        {
+            var parent = db.Parents.Where(i => i.Id == id).Select(a => a).FirstOrDefault();
+            //var kids = db.Children.Where(k => k.Parents.Contains(parent)).Select(s => s).ToList();
+            var children = new List<Child>();
+            foreach (var child in parent.Children)
+            {
+                children.Add(child);
+            }
+            //foreach(var kid in kids)
+            //{
+            //    children.Add(kid);
+            //}
+            return View(children);
+        }
     }
 }
