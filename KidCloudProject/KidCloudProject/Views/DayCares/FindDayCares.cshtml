@@ -59,13 +59,18 @@
 
 <div id="map"></div>
 <div id="directions-panel"></div>
+@using Newtonsoft.Json
 
 <script>
         var geocoder;
         var map;
         var directionsDisplay;
         var directionsService;
-        var pickups = @Html.Raw(Json.Encode(Model));
+        var dayCares = @Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented,
+                            new JsonSerializerSettings
+                            {
+                                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                            }));
         function initMap() {
             geocoder = new google.maps.Geocoder();
             directionsService = new google.maps.DirectionsService;
@@ -81,8 +86,8 @@
         }
 
         function codeAddress() {
-            for(var i = 0; i < pickups.length; i++){
-                var address = pickups[i].StreetAddress + " " + pickups[i].City + " " + pickups[i].State + " " + pickups[i].ZipCode;
+            for(var i = 0; i < dayCares.length; i++){
+                var address = dayCares[i].StreetAddress + " " + dayCares[i].City + " " + dayCares[i].State + " " + dayCares[i].ZipCode;
                 geocoder.geocode( { 'address': address}, function(results, status) {
                     if (status == 'OK') {
                         map.setCenter(results[0].geometry.location);

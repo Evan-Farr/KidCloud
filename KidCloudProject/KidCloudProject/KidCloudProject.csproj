@@ -517,6 +517,10 @@
     <Content Include="Views\Parents\ViewChildren.cshtml" />
     <Content Include="Views\Messages\GroupChat.cshtml" />
     <Content Include="Views\Messages\CreateDirectMessageChannel.cshtml" />
+    <Content Include="Views\DayCares\IndexParents.cshtml" />
+    <Content Include="Views\DayCares\IndexChildren.cshtml" />
+    <Content Include="Views\Parents\PrivateDetails.cshtml" />
+    <Content Include="Views\Children\PrivateDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

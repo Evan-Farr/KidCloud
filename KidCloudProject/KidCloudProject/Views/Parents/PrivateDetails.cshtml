@@ -1,7 +1,7 @@
 ﻿@model KidCloudProject.Models.Parent
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "PrivateDetails";
 }
 
 <h2>Details</h2>
@@ -98,10 +98,16 @@
             @Html.DisplayFor(model => model.MoneyOwed)
         </dd>
 
+        <dt>
+            @Html.DisplayName("Children")
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Children, Model.Children.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "")
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) 
-    @*@Html.ActionLink("Back to List", "Index")  // only the admin should have this view choice*@
     @Html.ActionLink("Back", "Index", "Users")
 </p>
