@@ -62,6 +62,13 @@ else if (ViewBag.displayMenu == "Employee")
 else if (ViewBag.displayMenu == "DayCare")
 {
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
+    <br />
+    <div class="col-md-10">
+        <div class="text-success">
+            @TempData["Message"]
+        </div>
+    </div>
+    <hr />
     <h3>
         <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
