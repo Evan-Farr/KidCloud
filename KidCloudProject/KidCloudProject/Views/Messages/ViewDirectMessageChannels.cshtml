@@ -1,0 +1,13 @@
+﻿@model IEnumerable<KidCloudProject.Models.ApplicationUser>
+@{
+    ViewBag.Title = "ViewDirectMessageChannels";
+}
+
+<h2>Select User To Send a Direct Message</h2>
+
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>@Html.ActionLink(user.UserName, "CreateDirectMessageChannel", "Messages", new { Username = user.UserName }, new { })</li>
+    }
+</ul>

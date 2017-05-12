@@ -22,7 +22,12 @@ namespace KidCloudProject.Controllers
             return View();
         }
 
-        public ActionResult CreateDirectMessageChannel()
+        public ActionResult CreateDirectMessageChannel(string Username)
+        {
+            return Content(Username);
+        }
+
+        public ActionResult ViewDirectMessageChannels()
         {
             string userId = User.Identity.GetUserId();
 
@@ -55,7 +60,7 @@ namespace KidCloudProject.Controllers
                 var employees = db.DayCares.Where(d => d.Id == daycare.Id).First().Employees.Select(e => e.UserId).ToList();
                 var users = parents.Concat(employees).ToList();
                 users.Add(daycare.UserId);
-                //users.Remove(user);
+                users.Remove(user);
 
                 return View(users);
             }
