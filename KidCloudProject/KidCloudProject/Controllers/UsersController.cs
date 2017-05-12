@@ -46,8 +46,10 @@ namespace TrashPickup.Controllers
                     var temp = db.DayCares.Where(i => i.UserId.Id == holder).FirstOrDefault().Id;
                     ViewBag.Id = temp;
                     var temp1 = db.DayCares.Where(i => i.UserId.Id == holder).FirstOrDefault().ZipCode;
+                    var dayCare = db.DayCares.Where(t => t.UserId.Id == holder).Select(a => a).FirstOrDefault();
                     ViewBag.ZipCode = temp1;
                     ViewBag.displayMenu = "DayCare";
+                    return View(dayCare);
                 }
                 return View();
             }

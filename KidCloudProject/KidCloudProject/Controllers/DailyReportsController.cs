@@ -37,11 +37,15 @@ namespace KidCloudProject.Controllers
         }
 
         // GET: DailyReports/Create
-        public ActionResult Create(Child child)
-        {
-            //child = db.Children.Where(d => d.Id == id).Select(s => s).FirstOrDefault();
-            return View(child);
-        }
+        //public ActionResult Create(DayCare dayCare)
+        //{
+        //    var DayCare = db.DayCares.Where(d => d.Id == dayCare.Id).Select(s => s).FirstOrDefault();
+        //    foreach(var kid in DayCare.Children)
+        //    {
+        //        if()
+        //    }
+        //    return View(child);
+        //}
 
         // POST: DailyReports/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
