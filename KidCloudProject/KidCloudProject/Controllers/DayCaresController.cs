@@ -184,14 +184,15 @@ namespace KidCloudProject.Controllers
             var parent = db.Parents.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
             dayCare.Parents.Add(parent);
-            var kids = db.Children.Where(o => o.Parents.Contains(parent)).ToList();
-            foreach (var kid in kids)
+            var kids = new List<Child>();
+            foreach (var kid in parent.Children)
             {
                 dayCare.Children.Add(kid);
             }
             dayCare.PendingApplications.Remove(parent);
             db.SaveChanges();
-            return RedirectToAction("Index", "Users"); //maybe redirect to confirmation page or back to pending applications? 
+            TempData["Message"] = "**Successfully added a new family to your day care!";
+            return RedirectToAction("ViewPendingApplications");
         }
 
         public ActionResult DenyApplication(int applicationId)
@@ -201,7 +202,8 @@ namespace KidCloudProject.Controllers
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
             dayCare.PendingApplications.Remove(parent);
             db.SaveChanges();
-            return RedirectToAction("Index", "Users"); //maybe redirect to confirmation page or back to pending applications? 
+            TempData["Message"] = "**Application has been removed from your pending applications.";
+            return RedirectToAction("ViewPendingApplications");
         }
     }
 }

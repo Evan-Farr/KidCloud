@@ -172,22 +172,18 @@ namespace KidCloudProject.Controllers
             var sendTo = db.DayCares.Where(k => k.Id == dayCareId).Select(p => p).FirstOrDefault();
             sendTo.PendingApplications.Add(parent);
             db.SaveChanges();
-            return RedirectToAction("Index", "Users"); //send confirmation page first maybe that says success or fail
+            TempData["Message"] = "**Your application has successfully been sent!";
+            return RedirectToAction("Index", "Users");
         }
 
         public ActionResult ViewChildren(int? id)
         {
             var parent = db.Parents.Where(i => i.Id == id).Select(a => a).FirstOrDefault();
-            //var kids = db.Children.Where(k => k.Parents.Contains(parent)).Select(s => s).ToList();
             var children = new List<Child>();
             foreach (var child in parent.Children)
             {
                 children.Add(child);
             }
-            //foreach(var kid in kids)
-            //{
-            //    children.Add(kid);
-            //}
             return View(children);
         }
     }

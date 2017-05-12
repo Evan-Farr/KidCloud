@@ -18,6 +18,13 @@ else if (ViewBag.displayMenu == "Parent")
 {
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <h3>
+        <div class="col-md-10">
+            <div class="text-success">
+                @TempData["Message"]
+            </div>
+        </div>
+        <hr />
+        <br />
         <li>@Html.ActionLink("My Account", "Details", "Parents", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("My Children", "ViewChildren", "Parents", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("My Current Balance", "ViewBalance", "Parents", new { id = ViewBag.Id }, null)</li>
