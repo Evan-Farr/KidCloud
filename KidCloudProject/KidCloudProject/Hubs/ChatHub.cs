@@ -8,14 +8,12 @@ using Twilio.Rest.Chat.V2.Service.Channel;
 using Microsoft.AspNet.Identity;
 using KidCloudProject.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using KidCloudProject._APIs;
 
 namespace KidCloudProject.Hubs
 {
     public class ChatHub : Hub
     {
-        const string accountSid = "AC383fc67c15e32582075da33d541fd388";
-        const string authToken = "7915107c0ef796ad3d5a51fe2cdd0552";
-        const string serviceSid = "IS9acc1cbb2d874347a95cacebfc5cd5aa";
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUser User;
 
@@ -23,7 +21,7 @@ namespace KidCloudProject.Hubs
         {
             this.User = db.Users.Where(u => u.UserName == userName).First();
 
-            TwilioClient.Init(accountSid, authToken);
+            TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
 
             string channelSid = GetChannelId();
             
@@ -31,7 +29,7 @@ namespace KidCloudProject.Hubs
             {
                 try
                 {
-                    MessageResource.Create(serviceSid, channelSid, body, this.User.UserName);
+                    MessageResource.Create(TwilioApiKeys.serviceSid, channelSid, body, this.User.UserName);
                     Clients.All.addNewMessageToPage(userName, body, DateTime.Now.ToString("h:mm tt"));
                 }
                 catch (Exception e)

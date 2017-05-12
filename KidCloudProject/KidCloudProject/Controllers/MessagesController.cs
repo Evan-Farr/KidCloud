@@ -8,16 +8,13 @@ using Twilio.Rest.Chat.V2.Service.Channel;
 using KidCloudProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using KidCloudProject._APIs;
 
 namespace KidCloudProject.Controllers
 {
     [Authorize]
     public class MessagesController : Controller
     {
-        const string accountSid = "AC383fc67c15e32582075da33d541fd388";
-        const string authToken = "7915107c0ef796ad3d5a51fe2cdd0552";
-        const string serviceSid = "IS9acc1cbb2d874347a95cacebfc5cd5aa";
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
@@ -49,16 +46,16 @@ namespace KidCloudProject.Controllers
             else if (isUser("Parent"))
             {
                 user = db.Parents.Where(p => p.UserId.Id == userId).First().UserId;
-                daycare = db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId;
+                daycare = db.Parents.Where(p => p.UserId.Id == userId).First().DayCare;
             }
 
             if (daycare != null && user != null)
             {
-                var parents = db.DayCares.Where(d => d.UserId.Id == userId).First().Parents.Select(p => p.UserId).ToList();
-                var employees = db.DayCares.Where(d => d.UserId.Id == userId).First().Employees.Select(e => e.UserId).ToList();
+                var parents = db.DayCares.Where(d => d.Id == daycare.Id).First().Parents.Select(p => p.UserId).ToList();
+                var employees = db.DayCares.Where(d => d.Id == daycare.Id).First().Employees.Select(e => e.UserId).ToList();
                 var users = parents.Concat(employees).ToList();
                 users.Add(daycare.UserId);
-                users.Remove(user);
+                //users.Remove(user);
 
                 return View(users);
             }
@@ -70,7 +67,7 @@ namespace KidCloudProject.Controllers
         // GET: Messages
         public ActionResult GroupChat()
         {
-            TwilioClient.Init(accountSid, authToken);
+            TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
 
             string channelSid = GetChannelId();
 
@@ -80,7 +77,7 @@ namespace KidCloudProject.Controllers
             }
 
             ViewBag.UserName = User.Identity.Name;
-            return View(MessageResource.Read(serviceSid, channelSid));
+            return View(MessageResource.Read(TwilioApiKeys.serviceSid, channelSid));
             //return View();
         }
 

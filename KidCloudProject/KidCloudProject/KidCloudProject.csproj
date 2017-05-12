@@ -258,6 +258,7 @@
     <Compile Include="Models\Parent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="_APIs\TwilioApiKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -496,14 +497,11 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-<<<<<<< HEAD
-=======
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705121723361_new first start.resx">
       <DependentUpon>201705121723361_new first start.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
->>>>>>> 3b88dd27b7f09ba74dc53b94cbd25aa16523d53b
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -27,23 +27,29 @@ textarea {
     max-width: 100%;
 }
 
-.message-date {
-    width: 100%;
-    padding: 12px;
-    display: inline-flex;
+.dateDivider {
+  width: 100%;
+  text-align: center;
+  display: inline-flex;
+  white-space: nowrap;
 }
 
-.message-date-text {
-    padding: 0 12px;
-    font-size: 1.2em;
+.dateDivider::before, .dateDivider::after{
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #ccc;
+  margin: auto;
 }
 
-.message-date-line {
-    height: 2px;
-    width: 100%;
-    background: #ccc;
-    margin: auto;
+.dateDivider::before {
+  margin-right: 12px;
 }
+.dateDivider::after {
+  margin-left: 12px;
+}
+
 
 .messages {
     height: 500px;

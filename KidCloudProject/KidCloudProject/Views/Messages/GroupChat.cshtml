@@ -19,11 +19,18 @@
             {
                 if (ViewBag.LastMessageDate == null || ViewBag.LastMessageDate.Date < m.DateCreated.Value.Date)
                 {
-                    <div class="message-date">
-                        <div class="message-date-line"></div>
-                        <strong class="message-date-text">@m.DateCreated.Value.ToString("MM/dd/yyyy")</strong>
-                        <div class="message-date-line"></div>
-                    </div>
+                    var dateSuffix = (m.DateCreated.Value.Day % 10 == 1 && m.DateCreated.Value.Day != 11) ? "st"
+                        : (m.DateCreated.Value.Day % 10 == 2 && m.DateCreated.Value.Day != 12) ? "nd"
+                        : (m.DateCreated.Value.Day % 10 == 3 && m.DateCreated.Value.Day != 13) ? "rd"
+                        : "th";
+                    if (m.DateCreated.Value.Date == DateTime.Now.Date)
+                    {
+                        <strong class="dateDivider" style="color:red;">Today</strong>
+                    }
+                    else
+                    {
+                        <strong class="dateDivider">@m.DateCreated.Value.ToString("MMMM dd")@dateSuffix</strong>
+                    }
                     <div class="message" style="border-top: none;">
                         <div class="message-icon">
 

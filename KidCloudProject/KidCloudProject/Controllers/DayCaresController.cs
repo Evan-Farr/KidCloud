@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Twilio;
 using Twilio.Rest.Chat.V2.Service;
 using Twilio.Rest.Chat.V2.Service.Channel;
+using KidCloudProject._APIs;
 
 namespace KidCloudProject.Controllers
 {
@@ -213,6 +214,11 @@ namespace KidCloudProject.Controllers
             }
             application.Status = "Approved";
             dayCare.PendingApplications.Remove(application);
+
+            // Add parent to daycare group chat channel
+            TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
+            MemberResource.Create(TwilioApiKeys.serviceSid, dayCare.ChannelId, application.Parent.UserId.UserName);
+
             db.SaveChanges();
             TempData["Message"] = "**Successfully added a new family to your day care!";
             return RedirectToAction("ViewPendingApplications");
