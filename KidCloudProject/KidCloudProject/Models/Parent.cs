@@ -11,6 +11,7 @@ namespace KidCloudProject.Models
         public Parent()
         {
             Children = new List<Child>();
+            Applications = new List<Application>();
         }
 
         [Key]
@@ -35,8 +36,9 @@ namespace KidCloudProject.Models
         [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
         public decimal? MoneyOwed { get; set; }
 
+        public virtual ICollection<Application> Applications { get; set; }
+        public virtual DayCare DayCare { get; set; }
         public virtual ICollection<Child> Children { get; set; }
-        public virtual DayCare DayCareId { get; set; }
         public virtual ApplicationUser UserId { get; set; }
     }
 }

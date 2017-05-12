@@ -225,6 +225,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\ChildrenController.cs" />
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DayCaresController.cs" />
@@ -239,8 +240,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Migrations\201705121723361_new first start.cs" />
+    <Compile Include="Migrations\201705121723361_new first start.Designer.cs">
+      <DependentUpon>201705121723361_new first start.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\DailyReport.cs" />
@@ -471,6 +477,13 @@
     <Content Include="Views\DayCares\IndexChildren.cshtml" />
     <Content Include="Views\Parents\PrivateDetails.cshtml" />
     <Content Include="Views\Children\PrivateDetails.cshtml" />
+    <Content Include="Views\Parents\Application.cshtml" />
+    <Content Include="Views\DayCares\ViewPendingApplications.cshtml" />
+    <Content Include="Views\Applications\Create.cshtml" />
+    <Content Include="Views\Applications\Delete.cshtml" />
+    <Content Include="Views\Applications\Details.cshtml" />
+    <Content Include="Views\Applications\Edit.cshtml" />
+    <Content Include="Views\Applications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -483,6 +496,14 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705121723361_new first start.resx">
+      <DependentUpon>201705121723361_new first start.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+>>>>>>> 3b88dd27b7f09ba74dc53b94cbd25aa16523d53b
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

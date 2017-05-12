@@ -177,6 +177,7 @@ namespace KidCloudProject.Controllers
 
         public ActionResult SendApplication(int? dayCareId)
         {
+            Application application = new Application();
             var user = User.Identity.GetUserId();
             Parent parent = db.Parents.Where(a => a.UserId.Id == user).Select(s => s).FirstOrDefault();
             if (parent == null)
@@ -184,7 +185,12 @@ namespace KidCloudProject.Controllers
                 return RedirectToAction("Register", "Account"); 
             }
             var sendTo = db.DayCares.Where(k => k.Id == dayCareId).Select(p => p).FirstOrDefault();
-            sendTo.PendingApplications.Add(parent);
+            application.Parent = parent;
+            application.DayCare = sendTo;
+            application.Date = DateTime.Today;
+            application.Status = "Pending";
+            sendTo.PendingApplications.Add(application);
+            parent.Applications.Add(application);
             db.SaveChanges();
             TempData["Message"] = "**Your application has successfully been sent!";
             return RedirectToAction("Index", "Users");

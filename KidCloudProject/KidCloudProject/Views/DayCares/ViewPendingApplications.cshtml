@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KidCloudProject.Models.Parent>
+﻿@model IEnumerable<KidCloudProject.Models.Application>
 @{
     ViewBag.Title = "ViewPendingApplications";
 }
@@ -13,13 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("First Name")
+            @Html.DisplayName("Date Recieved")
         </th>
         <th>
-            @Html.DisplayName("Last Name")
-        </th>
-        <th>
-            @Html.DisplayName("# of Children")
+            @Html.DisplayName("Status")
         </th>
         <th></th>
     </tr>
@@ -28,16 +25,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumberOfChildren)
-            </td>
-            <td>
-                @Html.ActionLink("Check them out!", "Application", "Parents", new { id = item.Id }, null)
+                @Html.ActionLink("Manage", "Application", "Parents", new { id = item.Parent.Id }, null)
             </td>
         </tr>
     }

@@ -6,8 +6,8 @@
 <h2>Application</h2>
 
 <div>
-    <h4>Parent</h4>
     <hr />
+    <h4>Parent</h4>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayName("First Name")
@@ -88,14 +88,112 @@
         <dd>
             @Html.DisplayFor(model => model.NumberOfChildren)
         </dd>
+        <br />
+        <h4>Children</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("First Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Last Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Age")
+                </th>
+                <th>
+                    @Html.DisplayName("Half Day")
+                </th>
+                <th>
+                    @Html.DisplayName("Full Day")
+                </th>
+                <th>
+                    @Html.DisplayName("Allergies")
+                </th>
+                <th>
+                    @Html.DisplayName("Allergies Details")
+                </th>
+                <th>
+                    @Html.DisplayName("Medications")
+                </th>
+                <th>
+                    @Html.DisplayName("Medication Instructions")
+                </th>
+                <th>
+                    @Html.DisplayName("Food Requirements")
+                </th>
+                <th>
+                    @Html.DisplayName("Food Instructions")
+                </th>
+                <th>
+                    @Html.DisplayName("Special Names")
+                </th>
+                <th>
+                    @Html.DisplayName("Special Needs Type")
+                </th>
+                <th>
+                    @Html.DisplayName("Special Needs Requirements")
+                </th>
+                <th></th>
+            </tr>
 
+            @foreach (var item in Model.Children)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HalfDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasAllergies)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AllergiesDetails)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TakesMedications)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicationInstructions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasSpecialFoodRequirements)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FoodRequirementsInstructions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasSpecialNeeds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecialNeedsType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecialNeedsRequirements)
+                    </td>
+                </tr>
+            }
+        </table>
     </dl>
 </div>
+<br />
 <hr />
 @using (Html.BeginForm("AcceptApplication", "DayCares", new { applicationId = Model.Id }, FormMethod.Post, null))
 {
     <button class="btn btn-default" type="submit">Accept</button>
 }
+<br />
 @using (Html.BeginForm("DenyApplication", "DayCares", new { applicationId = Model.Id }, FormMethod.Post, null))
 {
     <button class="btn btn-default" type="submit">Deny</button>
