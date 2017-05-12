@@ -1,0 +1,137 @@
+﻿@model KidCloudProject.Models.Child
+
+@{
+    ViewBag.Title = "PrivateDetails";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Child</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("First Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Last Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Age")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Half Day")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HalfDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Full Day")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Allergies")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasAllergies)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Allergies Details")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllergiesDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Takes Medications")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TakesMedications)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Medications Instructions")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicationInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Food Requirements")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasSpecialFoodRequirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Food Requirements Instructions")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodRequirementsInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Special Needs")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasSpecialNeeds)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Special Needs Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialNeedsType)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Special Needs Requirements")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialNeedsRequirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Parents")
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Parents, Model.Parents.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back", "Index", "Users")
+</p>

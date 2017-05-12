@@ -24,6 +24,28 @@ namespace KidCloudProject.Controllers
             return View(db.DayCares.ToList());
         }
 
+        public ActionResult IndexParents(int? id)
+        {
+            var dayCare = db.DayCares.Where(d => d.Id == id).Select(s => s).FirstOrDefault();
+            var parents = new List<Parent>();
+            foreach(var parent in dayCare.Parents)
+            {
+                parents.Add(parent);
+            }
+            return View(parents);
+        }
+
+        public ActionResult IndexChildren(int? id)
+        {
+            var dayCare = db.DayCares.Where(d => d.Id == id).Select(s => s).FirstOrDefault();
+            var children = new List<Child>();
+            foreach (var child in dayCare.Children)
+            {
+                children.Add(child);
+            }
+            return View(children);
+        }
+
         // GET: DayCares/Details/5
         public ActionResult Details(int? id)
         {
@@ -189,6 +211,7 @@ namespace KidCloudProject.Controllers
             {
                 dayCare.Children.Add(kid);
             }
+            parent.DayCareId.Id = dayCare.Id;
             dayCare.PendingApplications.Remove(parent);
             db.SaveChanges();
             TempData["Message"] = "**Successfully added a new family to your day care!";

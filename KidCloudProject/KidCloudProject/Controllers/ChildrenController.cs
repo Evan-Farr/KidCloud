@@ -36,6 +36,20 @@ namespace KidCloudProject.Controllers
             return View(child);
         }
 
+        public ActionResult PrivateDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Child child = db.Children.Find(id);
+            if (child == null)
+            {
+                return HttpNotFound();
+            }
+            return View(child);
+        }
+
         // GET: Children/Create
         public ActionResult Create()
         {
