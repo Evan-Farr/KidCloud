@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace KidCloudProject.Controllers
 {
     public class PaypalController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: PayPal
         public ActionResult Index()
         {
@@ -86,7 +89,7 @@ namespace KidCloudProject.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View("FailureView");
             }
@@ -105,18 +108,21 @@ namespace KidCloudProject.Controllers
 
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
-
+            var user = User.Identity.GetUserId();
+            var customer = db.Parents.Where(p => p.UserId.Id == user).First();
+            DateTime date = DateTime.Now;
+            string todaysDate = date.ToLongDateString();
             //similar to credit card create itemlist and add item objects to it
-            var itemList = new ItemList() { items = new List<Item>() };
+            //var itemList = new ItemList() { items = new List<Item>() };
 
-            itemList.items.Add(new Item()
-            {
-                name = "DayCare Account Balance",
-                currency = "USD",
-                price = "25",
-                quantity = "1",
-                //sku = "sku"
-            });
+            //itemList.items.Add(new Item()
+            //{
+            //    name = "DayCare Account Balance",
+            //    currency = "USD",
+            //    price = "25",
+            //    quantity = "1",
+            //    //sku = "sku"
+            //});
 
             var payer = new Payer() { payment_method = "paypal" };
 
@@ -139,7 +145,7 @@ namespace KidCloudProject.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                total = "25", // Total must be equal to sum of shipping, tax and subtotal.
+                total = customer.MoneyOwed.ToString(), // Total must be equal to sum of shipping, tax and subtotal.
                 //details = details
             };
 
@@ -147,10 +153,10 @@ namespace KidCloudProject.Controllers
 
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description.",
-                invoice_number = "123456",
+                description = customer.FirstName + " " + customer.LastName + " payment for child care services. " + todaysDate + "",
+                invoice_number = customer.Id + "-INV" + Guid.NewGuid().ToString(),
                 amount = amount,
-                item_list = itemList
+                //item_list = itemList
             });
 
             this.payment = new Payment()
