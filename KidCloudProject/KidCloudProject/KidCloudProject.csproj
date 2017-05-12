@@ -287,12 +287,17 @@
     <Compile Include="Migrations\201705111649570_added half and full day option on child and daily rate on daycare.Designer.cs">
       <DependentUpon>201705111649570_added half and full day option on child and daily rate on daycare.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705121244031_Added DirectMessageChannel.cs" />
+    <Compile Include="Migrations\201705121244031_Added DirectMessageChannel.Designer.cs">
+      <DependentUpon>201705121244031_Added DirectMessageChannel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\DailyReport.cs" />
     <Compile Include="Models\DayCare.cs" />
+    <Compile Include="Models\DirectMessageChannel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -509,8 +514,6 @@
     <Content Include="Views\PayPal\FailureView.cshtml" />
     <Content Include="Views\PayPal\PaymentWithPaypal.cshtml" />
     <Content Include="Views\Parents\AddAnotherChild.cshtml" />
-    <Content Include="Views\Parents\Application.cshtml" />
-    <Content Include="Views\DayCares\ViewPendingApplications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -559,6 +562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705111649570_added half and full day option on child and daily rate on daycare.resx">
       <DependentUpon>201705111649570_added half and full day option on child and daily rate on daycare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121244031_Added DirectMessageChannel.resx">
+      <DependentUpon>201705121244031_Added DirectMessageChannel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

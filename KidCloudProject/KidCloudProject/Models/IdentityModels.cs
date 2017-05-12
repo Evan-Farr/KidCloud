@@ -34,5 +34,6 @@ namespace KidCloudProject.Models
         public DbSet<Parent> Parents { get; set; }
         public DbSet<DayCare> DayCares { get; set; }
         public DbSet<DailyReport> DailyReports { get; set; }
+        public DbSet<DirectMessageChannel> DirectMessageChannels { get; set; }
     }
 }
