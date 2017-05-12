@@ -229,5 +229,10 @@ namespace KidCloudProject.Controllers
             TempData["Message"] = "**Application has been removed from your pending applications.";
             return RedirectToAction("ViewPendingApplications");
         }
+
+        public ActionResult ChooseChild()
+        {
+            return RedirectToAction("Create", "DailyReports", new { id = });
+        }
     }
 }

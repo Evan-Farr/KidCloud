@@ -4,23 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>New Daily Report</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>DailyReport</h4>
+        <h4>Report</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.Label("Report Date", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReportDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReportDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.Label("Bathroom", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -78,9 +71,14 @@
             </div>
         </div>
 
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.ReportDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReportDate, "", new { @class = "text-danger" })
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create Report" class="btn btn-default" />
             </div>
         </div>
     </div>

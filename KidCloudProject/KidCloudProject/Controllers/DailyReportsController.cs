@@ -51,6 +51,11 @@ namespace KidCloudProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                dailyReport.ReportDate = DateTime.Today;
+                var user = User.Identity.GetUserId();
+                DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+                dailyReport.DayCareId = dayCare;
+                dayCare.DailyReports.Add(dailyReport);
                 db.DailyReports.Add(dailyReport);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Users");
