@@ -105,10 +105,8 @@
         <div class="form-group">
             @Html.Label("Special Needs", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.HasSpecialNeeds)
-                    @Html.ValidationMessageFor(model => model.HasSpecialNeeds, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.HasSpecialNeeds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HasSpecialNeeds, "", new { @class = "text-danger" })
             </div>
         </div>
 

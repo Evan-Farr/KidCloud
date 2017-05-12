@@ -514,6 +514,7 @@
     <Content Include="Views\PayPal\FailureView.cshtml" />
     <Content Include="Views\PayPal\PaymentWithPaypal.cshtml" />
     <Content Include="Views\Parents\AddAnotherChild.cshtml" />
+    <Content Include="Views\Parents\ViewChildren.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
