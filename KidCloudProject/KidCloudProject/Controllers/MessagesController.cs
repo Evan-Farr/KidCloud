@@ -20,8 +20,55 @@ namespace KidCloudProject.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Messages
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult CreateDirectMessageChannel()
+        {
+            string userId = User.Identity.GetUserId();
+
+            DayCare daycare = null;
+            ApplicationUser user = null;
+
+            if (isUser("Admin"))
+            {
+                return Content("Admin stop!");
+            }
+            else if (isUser("DayCare"))
+            {
+                daycare = db.DayCares.Where(d => d.UserId.Id == userId).First();
+                user = daycare.UserId;
+            }
+            else if (isUser("Employee"))
+            {
+                user = db.Employees.Where(e => e.UserId.Id == userId).First().UserId;
+                daycare = db.Employees.Where(e => e.UserId.Id == userId).First().DayCareId;
+            }
+            else if (isUser("Parent"))
+            {
+                user = db.Parents.Where(p => p.UserId.Id == userId).First().UserId;
+                daycare = db.Parents.Where(p => p.UserId.Id == userId).First().DayCareId;
+            }
+
+            if (daycare != null && user != null)
+            {
+                var parents = db.DayCares.Where(d => d.UserId.Id == userId).First().Parents.Select(p => p.UserId).ToList();
+                var employees = db.DayCares.Where(d => d.UserId.Id == userId).First().Employees.Select(e => e.UserId).ToList();
+                var users = parents.Concat(employees).ToList();
+                users.Add(daycare.UserId);
+                users.Remove(user);
+
+                return View(users);
+            }
+
+
+            return Content("We broke something");
+        }
+
+        // GET: Messages
+        public ActionResult GroupChat()
         {
             TwilioClient.Init(accountSid, authToken);
 

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Twilio.Rest.Chat.V2.Service.Channel.MessageResource>
+@{
+    ViewBag.Title = "Group Chat";
+    ViewBag.UnreadMessageCount = 0;
+}
+
+<h3>@ViewBag.DayCareName - Group Chat</h3>
+
+<div class="container">
+    <div class="channels-container" style="display: none;">
+        <div class="channels">
+            <div class="channel"></div>
+            <div class="channel channel-create-btn"></div>
+        </div>
+    </div>
+    <div class="messages-container">
+        <div class="messages" id="messages">
+            @foreach (var m in Model)
+            {
+                if (ViewBag.LastMessageDate == null || ViewBag.LastMessageDate.Date < m.DateCreated.Value.Date)
+                {
+                    <div class="message-date">
+                        <div class="message-date-line"></div>
+                        <strong class="message-date-text">@m.DateCreated.Value.ToString("MM/dd/yyyy")</strong>
+                        <div class="message-date-line"></div>
+                    </div>
+                    <div class="message" style="border-top: none;">
+                        <div class="message-icon">
+
+                        </div>
+                        <div class="message-body">
+                            <div class="message-info"><strong>@m.From <small style="color:#999">@m.DateCreated.Value.ToLocalTime().ToString("h:mm tt")</small></strong></div>
+                            <div class="message-text">@m.Body</div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="message">
+                        <div class="message-icon">
+
+                        </div>
+                        <div class="message-body">
+                            <div class="message-info"><strong>@m.From <small style="color:#999">@m.DateCreated.Value.ToLocalTime().ToString("h:mm tt")</small></strong></div>
+                            <div class="message-text">@m.Body</div>
+                        </div>
+                    </div>
+                }
+                ViewBag.LastMessageDate = m.DateCreated.Value;
+            }
+        </div>
+        <div class="input-group">
+            @Html.TextBox("body", null, new { @class = "form-control border-top-radius-none width-100", @id = "messageInput" })
+            <span class="input-group-btn">
+                <input class="btn btn-default border-top-radius-none" type="submit" value="Send" id="sendMessage">
+            </span>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<script src="~/signalr/hubs"></script>
+
+<script>
+    var messages = document.getElementById("messages");
+    var messageInput = document.getElementById("messageInput");
+    messages.scrollTop = messages.scrollHeight;
+    var unreadMessageCount = 0;
+
+    window.onfocus = function() {
+        document.title = "Group Chat";
+        unreadMessageCount = 0;
+    }
+
+    $(function () {
+        var chat = $.connection.chatHub;
+        chat.client.addNewMessageToPage = function (name, message, time) {
+            $("#messages").append(
+                "<div class='message'>" +
+                    "<div class='message-icon'></div>" +
+                    "<div class='message-body'>" +
+                        "<div class='message-info'><strong>" + name + " <small style='color:#999'>" + time + "</small></strong></div>" +
+                        "<div class='message-text'>" + message + "</div>" +
+                    "</div>" +
+                "</div>");
+            messageInput.focus();
+            messages.scrollTop = messages.scrollHeight;
+            if (!document.hasFocus()) {
+                document.title = "(" + ++unreadMessageCount + ") Group Chat";
+            }
+        };
+        $.connection.hub.start().done(function() {
+            $("#sendMessage").click(function () {
+                chat.server.send($("#messageInput").val(), "@ViewBag.UserName");
+                messageInput.value = "";
+            });
+            $("#messageInput").keypress(function (e) {
+                if (e.which == 13) {
+                    chat.server.send($("#messageInput").val(), "@ViewBag.UserName");
+                    messageInput.value = "";
+                    return false;
+                }
+            });
+        });
+    });
+</script>
