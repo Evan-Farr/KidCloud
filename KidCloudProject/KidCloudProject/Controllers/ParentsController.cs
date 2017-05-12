@@ -147,6 +147,42 @@ namespace KidCloudProject.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Parents/Remove/5
+        public ActionResult Remove(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Parent parent = db.Parents.Find(id);
+            if (parent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(parent);
+        }
+
+        [HttpPost, ActionName("Remove")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveConfirmed(int id)
+        {
+            Parent parent = db.Parents.Find(id);
+            var user = User.Identity.GetUserId();
+            DayCare dayCare = db.DayCares.Where(a => a.UserId.Id == user).Select(s => s).FirstOrDefault();
+            foreach(var child in dayCare.Children)
+            {
+                if (child.Parents.Contains(parent))
+                {
+                    dayCare.Children.Remove(child);
+                }
+            }
+            dayCare.Parents.Remove(parent);
+            parent.DayCare = null;
+            db.SaveChanges();
+            TempData["Message"] = "**The parent and their children have sucessfully been removed.";
+            return RedirectToAction("Index", "Users");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

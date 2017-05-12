@@ -1,19 +1,19 @@
 ﻿@model KidCloudProject.Models.Parent
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Remove";
 }
 
-<h2>Delete</h2>
+<h2>Remove</h2>
 
 <h3>Are you sure you want to delete this Parent?</h3>
-
+<h5>Warning: Removing them will also remove their children.</h5>
 <div>
     <h4>Parent</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName("First Name")
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayName("Last Name")
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Age)
+            @Html.DisplayName("Age")
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress)
+            @Html.DisplayName("Street Address")
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayName("City")
         </dt>
 
         <dd>
@@ -53,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayName("State")
         </dt>
 
         <dd>
@@ -61,7 +61,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
+            @Html.DisplayName("Zip Code")
         </dt>
 
         <dd>
@@ -69,7 +69,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayName("Phone #")
         </dt>
 
         <dd>
@@ -77,7 +77,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayName("Email")
         </dt>
 
         <dd>
@@ -85,7 +85,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NumberOfChildren)
+            @Html.DisplayName("Money Owed")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoneyOwed)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("# of Children")
         </dt>
 
         <dd>
@@ -93,22 +101,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MoneyOwed)
+            @Html.DisplayName("Children")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MoneyOwed)
+            @Html.DropDownListFor(model => model.Children, Model.Children.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "")
         </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Remove" class="btn btn-default" /> |
             @*@Html.ActionLink("Back To List", "Index") //only for Admin*@
             @Html.ActionLink("Cancel", "Index", "Users")
         </div>
     }
 </div>
+
