@@ -21,5 +21,16 @@ namespace KidCloudProject.Models
         public string end { get; set; }
 
         public Boolean editable { get; set; }
+
+        public EventType? EventType { get; set; }
+
+        public virtual ApplicationUser UserId { get; set; }
+
+    }
+
+    public enum EventType
+    {
+        Absence,
+        Activity
     }
 }

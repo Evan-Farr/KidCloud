@@ -250,6 +250,10 @@
     <Compile Include="Migrations\201705151550078_added Event MVC.Designer.cs">
       <DependentUpon>201705151550078_added Event MVC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705151854195_Added foreign key to Event model.cs" />
+    <Compile Include="Migrations\201705151854195_Added foreign key to Event model.Designer.cs">
+      <DependentUpon>201705151854195_Added foreign key to Event model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
@@ -521,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705151550078_added Event MVC.resx">
       <DependentUpon>201705151550078_added Event MVC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151854195_Added foreign key to Event model.resx">
+      <DependentUpon>201705151854195_Added foreign key to Event model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

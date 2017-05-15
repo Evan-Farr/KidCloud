@@ -57,7 +57,7 @@ namespace KidCloudProject.Controllers
                 db.Events.Add(@event);
                 db.SaveChanges();
                 return RedirectToAction("Calendar", new RouteValueDictionary(
-                    new { controller = "Home", action = "Calendar" }));
+                    new { controller = "DayCares", action = "Calendar" }));
             }
 
             return View(@event);
