@@ -36,5 +36,7 @@ namespace KidCloudProject.Models
         public DbSet<DailyReport> DailyReports { get; set; }
         public DbSet<DirectMessageChannel> DirectMessageChannels { get; set; }
         public DbSet<Application> Applications { get; set; }
+
+        public System.Data.Entity.DbSet<KidCloudProject.Models.Event> Events { get; set; }
     }
 }
