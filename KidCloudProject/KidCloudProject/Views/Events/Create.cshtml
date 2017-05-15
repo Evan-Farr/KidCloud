@@ -1,4 +1,4 @@
-﻿@model KidCloudProject.Models.Event
+﻿@model _2ndCalendarAPITesting.Models.Event
 
 @{
     ViewBag.Title = "Create";
@@ -6,10 +6,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Event</h4>
         <hr />
@@ -33,27 +33,39 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.start, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label  col-md-2">Start Date</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.start, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.start, "", new { @class = "text-danger" })
+                <input type="date" name="StartDate" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.end, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Start Time</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.end, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.end, "", new { @class = "text-danger" })
+                <input type="time" name="StartTime" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.editable, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">End Date</label>
+            <div class="col-md-10">
+                <input type="date" name="EndDate" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">End Time</label>
+            <div class="col-md-10">
+                <input type="time" name="EndTime" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.overlap, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.editable)
-                    @Html.ValidationMessageFor(model => model.editable, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.overlap)
+                    @Html.ValidationMessageFor(model => model.overlap, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
