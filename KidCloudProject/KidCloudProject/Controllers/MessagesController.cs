@@ -23,53 +23,59 @@ namespace KidCloudProject.Controllers
             return View();
         }
 
-        public ActionResult DirectMessage(string Username)
+        public ActionResult DirectMessage(string Receiver)
         {
-            string userId = User.Identity.GetUserId();
-            ApplicationUser receiver = db.Users.Where(u => u.UserName == Username).First();
-            ApplicationUser sender = db.Users.Where(u => u.Id == userId).First();
-
-            ViewBag.UserName = sender.UserName;
-            ViewBag.Receiver = receiver.UserName;
-            DirectMessageChannel dmChannel = null;
-
-            // API Connect
-            TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
-
             try
             {
-                dmChannel = db.DirectMessageChannels.Where(dm => dm.ReciverId.Id == receiver.Id && dm.SenderId.Id == sender.Id || dm.ReciverId.Id == sender.Id && dm.SenderId.Id == receiver.Id).First();
-                return View(MessageResource.Read(TwilioApiKeys.serviceSid, dmChannel.ChannelId));
+                string userId = User.Identity.GetUserId();
+                ApplicationUser receiver = db.Users.Where(u => u.UserName == Receiver).First();
+                ApplicationUser sender = db.Users.Where(u => u.Id == userId).First();
+
+                ViewBag.UserName = sender.UserName;
+                ViewBag.Receiver = receiver.UserName;
+                DirectMessageChannel dmChannel = null;
+
+                // API Connect
+                TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
+
+                try
+                {
+                    dmChannel = db.DirectMessageChannels.Where(dm => dm.ReciverId.Id == receiver.Id && dm.SenderId.Id == sender.Id || dm.ReciverId.Id == sender.Id && dm.SenderId.Id == receiver.Id).First();
+                    return View(MessageResource.Read(TwilioApiKeys.serviceSid, dmChannel.ChannelId));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+
+                if (dmChannel == null)
+                {
+                    // API Create channel
+                    var channel = ChannelResource.Create(TwilioApiKeys.serviceSid, friendlyName: "DM Channel", uniqueName: $"{sender.UserName}-{receiver.UserName}", type: ChannelResource.ChannelTypeEnum.Private);
+
+                    // Database DMChannel
+                    dmChannel = new DirectMessageChannel();
+                    dmChannel.ChannelId = channel.Sid;
+                    dmChannel.ReciverId = receiver;
+                    dmChannel.SenderId = sender;
+
+                    // API Add members
+                    MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dmChannel.ReciverId.UserName);
+                    MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dmChannel.SenderId.UserName);
+
+                    // Save DMChannel to Database
+                    db.DirectMessageChannels.Add(dmChannel);
+                    db.SaveChanges();
+
+                    return View(MessageResource.Read(TwilioApiKeys.serviceSid, channel.Sid));
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-            
-
-            if (dmChannel == null)
-            {
-                // API Create channel
-                var channel = ChannelResource.Create(TwilioApiKeys.serviceSid, friendlyName: "DM Channel", uniqueName: $"{sender}-{receiver}", type: ChannelResource.ChannelTypeEnum.Private);
-
-                // Database DMChannel
-                dmChannel = new DirectMessageChannel();
-                dmChannel.ChannelId = channel.Sid;
-                dmChannel.ReciverId = receiver;
-                dmChannel.SenderId = sender;
-
-                // API Add members
-                MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dmChannel.ReciverId.UserName);
-                MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dmChannel.SenderId.UserName);
-
-                // Save DMChannel to Database
-                db.DirectMessageChannels.Add(dmChannel);
-                db.SaveChanges();
-
-                return View(MessageResource.Read(TwilioApiKeys.serviceSid, channel.Sid));
-            }
-
-            return Content("Something broke");
+            return View("Index");
         }
 
         public ActionResult ViewDirectMessageChannels()

@@ -21,6 +21,55 @@ namespace KidCloudProject.Controllers
             return View(db.DailyReports.ToList());
         }
 
+        public ActionResult PrivateIndex()
+        {
+            var user = User.Identity.GetUserId();
+            DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+            var reports = new List<DailyReport>();
+            var reports1 = db.DailyReports.Where(d => d.DayCareId.Id == dayCare.Id).Select(a => a).ToList();
+            foreach (var report in reports1)
+            {
+                reports.Add(report);
+            }
+            return View(reports);
+        }
+
+        public ActionResult PrivateIndexByChild(string Children)
+        {
+            var childId = int.Parse(Children);
+            Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
+            var user = User.Identity.GetUserId();
+            DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+            var reports1 = db.DailyReports.Where(d => d.ChildId.Id == child.Id).Select(a => a).ToList();
+            var reports = new List<DailyReport>();
+            foreach (var report in reports1)
+            {
+                if(report.DayCareId == dayCare)
+                {
+                    reports.Add(report);
+                }
+            }
+            return View(reports);
+        }
+
+        public ActionResult ParentsIndexByChild(string Children)
+        {
+            var childId = int.Parse(Children);
+            Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
+            var user = User.Identity.GetUserId();
+            Parent parent = db.Parents.Where(v => v.UserId.Id == user).Select(i => i).FirstOrDefault();
+            var reports1 = db.DailyReports.Where(d => d.ChildId.Id == child.Id).Select(a => a).ToList();
+            var reports = new List<DailyReport>();
+            foreach (var report in reports1)
+            {
+                if (child.Parents.Contains(parent))
+                {
+                    reports.Add(report);
+                }
+            }
+            return View(reports);
+        }
+
         // GET: DailyReports/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,23 +85,21 @@ namespace KidCloudProject.Controllers
             return View(dailyReport);
         }
 
-        // GET: DailyReports/Create
-        //public ActionResult Create(DayCare dayCare)
-        //{
-        //    var DayCare = db.DayCares.Where(d => d.Id == dayCare.Id).Select(s => s).FirstOrDefault();
-        //    foreach(var kid in DayCare.Children)
-        //    {
-        //        if()
-        //    }
-        //    return View(child);
-        //}
+        public ActionResult Create(string Children)
+        {
+            var childId = int.Parse(Children);
+            Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
+            DailyReport report = new DailyReport();
+            report.ChildId = child;
+            return View(report);
+        }
 
         // POST: DailyReports/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ReportDate,BathroomUse,Meals,Sleep,ActivityReport,SuppliesNeeds,Mood,MiscellaneousNotes")] DailyReport dailyReport, Child child)
+        public ActionResult Create([Bind(Include = "Id,ReportDate,BathroomUse,Meals,Sleep,ActivityReport,SuppliesNeeds,Mood,MiscellaneousNotes")] DailyReport dailyReport, string Children)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +107,8 @@ namespace KidCloudProject.Controllers
                 var user = User.Identity.GetUserId();
                 DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
                 dailyReport.DayCareId = dayCare;
+                var childId = int.Parse(Children);
+                Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
                 dailyReport.ChildId = child;
                 dayCare.DailyReports.Add(dailyReport);
                 db.DailyReports.Add(dailyReport);

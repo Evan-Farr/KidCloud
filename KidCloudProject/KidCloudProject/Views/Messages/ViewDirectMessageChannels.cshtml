@@ -8,6 +8,6 @@
 <ul>
     @foreach (var user in Model)
     {
-        <li>@Html.ActionLink(user.UserName, "DirectMessage", "Messages", new { Username = user.UserName }, new { })</li>
+        <li>@Html.ActionLink(user.UserName, "DirectMessage", "Messages", new { Receiver = user.UserName }, new { })</li>
     }
 </ul>
