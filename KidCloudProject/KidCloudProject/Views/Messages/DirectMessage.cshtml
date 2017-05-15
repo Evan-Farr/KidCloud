@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Twilio.Rest.Chat.V2.Service.Channel.MessageResource>
 @{
-    ViewBag.Title = "Group Chat";
+    ViewBag.Title = "Direct Message";
     ViewBag.UnreadMessageCount = 0;
 }
 
-<h3>@ViewBag.DayCareName - Group Chat</h3>
+<h3>Direct Message</h3>
 
 <div class="container">
     <div class="channels-container" style="display: none;">
@@ -75,12 +75,12 @@
     var unreadMessageCount = 0;
 
     window.onfocus = function() {
-        document.title = "Group Chat";
+        document.title = "Direct Message";
         unreadMessageCount = 0;
     }
 
     $(function () {
-        var chat = $.connection.groupChatHub;
+        var chat = $.connection.directMessageHub;
         chat.client.addNewMessageToPage = function (name, message, time) {
             $("#messages").append(
                 "<div class='message'>" +
@@ -107,7 +107,7 @@
     });
 
     function sendMessage(chat) {
-        chat.server.send($("#messageInput").val(), "@ViewBag.UserName");
+        chat.server.send($("#messageInput").val(), "@ViewBag.UserName", "@ViewBag.Receiver");
         messageInput.value = "";
     }
 
@@ -118,7 +118,7 @@
 
     function chatNotification() {
         if (!document.hasFocus()) {
-            document.title = "(" + ++unreadMessageCount + ") Group Chat";
+            document.title = "(" + ++unreadMessageCount + ") Direct Message";
         }
     }
 </script>
