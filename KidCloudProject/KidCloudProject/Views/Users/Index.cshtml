@@ -47,11 +47,6 @@ else if (ViewBag.displayMenu == "Parent")
     </h3>
     <hr />
     <div class="col-md-10">
-        <div class="text-warning">
-            @TempData["ErrorMessage1"]
-        </div>
-    </div>
-    <div class="col-md-10">
         @using (Html.BeginForm("ParentsIndexByChild", "DailyReports", FormMethod.Post))
         {
             <fieldset>
@@ -67,14 +62,14 @@ else if (ViewBag.displayMenu == "Parent")
             <input class="btn btn-default" type="submit" value="Show Me" />
         }
     </div>
-    <br />
-    <hr />
+    <br /><br />
     <div class="col-md-10">
         <div class="text-warning">
-            @TempData["ErrorMessage2"]
+            @TempData["ErrorMessage1"]
         </div>
     </div>
-    <div class="col-md-4">
+    <hr />
+    <div class="col-md-10">
         <h2>@Html.Label("Find the right day care!")</h2>
         @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
         {
@@ -82,6 +77,12 @@ else if (ViewBag.displayMenu == "Parent")
             @Html.ValidationMessageFor(model => model.ZipCode)
             <button class="btn btn-default" type="submit">Search</button>
         }
+    </div>
+    <br /><br />
+    <div class="col-md-10">
+        <div class="text-warning">
+            @TempData["ErrorMessage2"]
+        </div>
     </div>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><hr />
 }
@@ -162,6 +163,7 @@ else if (ViewBag.displayMenu == "DayCare")
             <input class="btn btn-default" type="submit" value="Create"/>
         }
     </div>
+    <br /><br />
     <div class="col-md-10">
         <div class="text-danger">
             @TempData["ErrorMessage2"]
