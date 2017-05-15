@@ -230,6 +230,7 @@
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DayCaresController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
@@ -245,6 +246,14 @@
     <Compile Include="Migrations\201705121723361_new first start.Designer.cs">
       <DependentUpon>201705121723361_new first start.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705151550078_added Event MVC.cs" />
+    <Compile Include="Migrations\201705151550078_added Event MVC.Designer.cs">
+      <DependentUpon>201705151550078_added Event MVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705151854195_Added foreign key to Event model.cs" />
+    <Compile Include="Migrations\201705151854195_Added foreign key to Event model.Designer.cs">
+      <DependentUpon>201705151854195_Added foreign key to Event model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
@@ -254,6 +263,7 @@
     <Compile Include="Models\DayCare.cs" />
     <Compile Include="Models\DirectMessageChannel.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Parent.cs" />
@@ -492,6 +502,11 @@
     <Content Include="Views\DailyReports\ParentsIndexByChild.cshtml" />
     <Content Include="Views\Messages\ViewDirectMessageChannels.cshtml" />
     <Content Include="Views\Messages\DirectMessage.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -507,6 +522,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705121723361_new first start.resx">
       <DependentUpon>201705121723361_new first start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151550078_added Event MVC.resx">
+      <DependentUpon>201705151550078_added Event MVC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151854195_Added foreign key to Event model.resx">
+      <DependentUpon>201705151854195_Added foreign key to Event model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
