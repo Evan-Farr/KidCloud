@@ -33,10 +33,27 @@ else if (ViewBag.displayMenu == "Parent")
         <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
         @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare along with chat*@
     </h3>
+    <hr />
+    <div class="col-md-10">
+        @using (Html.BeginForm("ParentsIndexByChild", "DailyReports", FormMethod.Post))
+        {
+            <fieldset>
+                <dl>
+                    <dt>
+                        <h2>@Html.Label("View Daily Reports")</h2>
+                    </dt>
+                    <dd>
+                        @Html.DropDownList("Children", "Select Child")
+                    </dd>
+                </dl>
+            </fieldset>
+            <input class="btn btn-default" type="submit" value="Show Me" />
+        }
+    </div>
     <br />
     <hr />
     <div class="col-md-4">
-        <h2>Find the right day care!</h2>
+        <h2>@Html.Label("Find the right day care!")</h2>
         @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
         {
             @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code" })
@@ -44,7 +61,7 @@ else if (ViewBag.displayMenu == "Parent")
             <button class="btn btn-default" type="submit">Search</button>
         }
     </div>
-    <br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><hr />
 }
 else if (ViewBag.displayMenu == "Employee")
 {
@@ -80,26 +97,42 @@ else if (ViewBag.displayMenu == "DayCare")
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
         <hr />
-        <li>@Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, null)</li>
+        @*<li>@Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, null)</li>*@
     </h3>
-        <div class="col-md-10">
-            @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
-            {
-                <fieldset>
-                    <dl>
-                        <dt>
-                            <h3>@Html.Label("New Daily Report")  </h3> 
-                        </dt>
-                        <dd>
-                            @Html.DropDownListFor(Model => Model.Children, Model.Children.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "Select Child")
-                        </dd>
-                    </dl>
-                </fieldset>
-               
-                <input class="btn btn-default" type="submit" value="Create"/>
-            }
-        </div>
-     <br />
+    <div class="col-md-10">
+        @using (Html.BeginForm("PrivateIndexByChild", "DailyReports", FormMethod.Post))
+        {
+            <fieldset>
+                <dl>
+                    <dt>
+                        <h3>@Html.Label("View Daily Reports")</h3>
+                    </dt>
+                    <dd>
+                        @Html.DropDownList("Children", "Select Child")
+                    </dd>
+                </dl>
+            </fieldset>
+                <input class="btn btn-default" type="submit" value="Show Me" />
+        }
+    </div>
+    <br /><br /><br />
+    <div class="col-md-10">
+        @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
+        {
+            <fieldset>
+                <dl>
+                    <dt>
+                        <h3>@Html.Label("New Daily Report")</h3> 
+                    </dt>
+                    <dd>
+                        @Html.DropDownList("Children", "Select Child")
+                    </dd>
+                </dl>
+            </fieldset>
+            <input class="btn btn-default" type="submit" value="Create"/>
+        }
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><hr />
 }
 
 

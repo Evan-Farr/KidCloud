@@ -30,7 +30,14 @@ namespace TrashPickup.Controllers
                 {
                     string holder = user.GetUserId();
                     var temp = db.Parents.Where(i => i.UserId.Id == holder).FirstOrDefault().Id;
+                    var parent = db.Parents.Where(b => b.UserId.Id == holder).Select(q => q).FirstOrDefault();
                     ViewBag.Id = temp;
+                    List<SelectListItem> kids = new List<SelectListItem>();
+                    foreach (var child in parent.Children)
+                    {
+                        kids.Add(new SelectListItem { Text = child.FirstName + " " + child.LastName, Value = child.Id.ToString() });
+                    }
+                    ViewBag.Children = kids;
                     ViewBag.displayMenu = "Parent";
                 }
                 else if (isUser("Employee"))
@@ -48,8 +55,13 @@ namespace TrashPickup.Controllers
                     var temp1 = db.DayCares.Where(i => i.UserId.Id == holder).FirstOrDefault().ZipCode;
                     var dayCare = db.DayCares.Where(t => t.UserId.Id == holder).Select(s => s).FirstOrDefault();
                     ViewBag.ZipCode = temp1;
+                    List<SelectListItem> children = new List<SelectListItem>();
+                    foreach(var child in dayCare.Children)
+                    {
+                        children.Add(new SelectListItem { Text = child.FirstName + " " + child.LastName, Value = child.Id.ToString() });
+                    }
+                    ViewBag.Children = children;
                     ViewBag.displayMenu = "DayCare";
-                    return View(dayCare);
                 }
                 return View();
             }
