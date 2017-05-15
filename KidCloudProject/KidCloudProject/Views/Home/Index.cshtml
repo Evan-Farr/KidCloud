@@ -4,10 +4,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Kid-Cloud!</h1>
-    <p class="lead">One sentence attention grabber about what makes Kid-Cloud so great and unique goes here.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Let's Go! &raquo;</a></p>
+<div class="homepage-jumbotron-bg">
+    <div class="jumbotron">
+        <h1>Kid-Cloud!</h1>
+        <p class="lead">One sentence attention grabber about what makes Kid-Cloud so great and unique goes here.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Let's Go! &raquo;</a></p>
+    </div>
 </div>
 
 <div class="row">
@@ -23,14 +25,18 @@
         <p>We only accept the best, accredited day cares on Kid-Cloud. Enter your zipcode and choose the perfect day care near you!</p>
         @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
         {
-            @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code" })
-            @Html.ValidationMessageFor(model => model.ZipCode)
-            <button class="btn btn-default" type="submit">Search</button>
+            <div class="input-group">
+                @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code", @class = "form-control width-100" })
+                @Html.ValidationMessageFor(model => model.ZipCode)
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Search</button>
+                </span>
+            </div>
         }
     </div>
     <div class="col-md-4">
         <h2>Join Kid-Cloud Today</h2>
         <p>New to Kid-Cloud? Register as a new parent or day care today!.</p>
-        <p><a class="btn btn-default" href="http://localhost:34611/Account">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Register", "Account")">Learn more &raquo;</a></p>
     </div>
 </div>
