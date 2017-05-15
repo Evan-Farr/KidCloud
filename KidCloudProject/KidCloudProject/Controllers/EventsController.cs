@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KidCloudProject.Models;
+using System.Web.Routing;
 
 namespace KidCloudProject.Controllers
 {
@@ -46,13 +47,17 @@ namespace KidCloudProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,title,allDay,start,end,editable")] Event @event)
+        public ActionResult Create(Event @event, DateTime StartDate, DateTime EndDate, DateTime StartTime, DateTime EndTime)
         {
+            @event.start = StartDate.ToString("yyyy-MM-dd ") + StartTime.ToString("HH:mm:ss");
+            @event.end = EndDate.ToString("yyyy-MM-dd ") + EndTime.ToString("HH:mm:ss");
+
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Calendar", new RouteValueDictionary(
+                    new { controller = "Home", action = "Calendar" }));
             }
 
             return View(@event);

@@ -1,4 +1,4 @@
-﻿@model _2ndCalendarAPITesting.Models.Event
+﻿@model KidCloudProject.Models.Event
 
 @{
     ViewBag.Title = "Create";
@@ -61,11 +61,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.overlap, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.editable, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.overlap)
-                    @Html.ValidationMessageFor(model => model.overlap, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.editable)
+                    @Html.ValidationMessageFor(model => model.editable, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

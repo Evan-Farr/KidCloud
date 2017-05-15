@@ -187,8 +187,9 @@ namespace KidCloudProject.Controllers
 
         public ActionResult Calendar()
         {
+            ApplicationDbContext context = new ApplicationDbContext();
 
-            return View();
+            return View(context.Events.ToList());
         }
 
         public ActionResult ViewPendingApplications()
