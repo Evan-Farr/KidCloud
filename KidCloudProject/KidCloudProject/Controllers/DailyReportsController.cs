@@ -36,23 +36,20 @@ namespace KidCloudProject.Controllers
             return View(dailyReport);
         }
 
-        // GET: DailyReports/Create
-        //public ActionResult Create(DayCare dayCare)
-        //{
-        //    var DayCare = db.DayCares.Where(d => d.Id == dayCare.Id).Select(s => s).FirstOrDefault();
-        //    foreach(var kid in DayCare.Children)
-        //    {
-        //        if()
-        //    }
-        //    return View(child);
-        //}
+        public ActionResult Create(string Value)
+        {
+            Child child = db.Children.Where(d => d.Id == int.Parse(Value)).Select(s => s).FirstOrDefault();
+            DailyReport report = new DailyReport();
+            report.ChildId = child;
+            return View(report);
+        }
 
         // POST: DailyReports/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ReportDate,BathroomUse,Meals,Sleep,ActivityReport,SuppliesNeeds,Mood,MiscellaneousNotes")] DailyReport dailyReport, Child child)
+        public ActionResult Create([Bind(Include = "Id,ReportDate,BathroomUse,Meals,Sleep,ActivityReport,SuppliesNeeds,Mood,MiscellaneousNotes")] DailyReport dailyReport, string Value)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +57,7 @@ namespace KidCloudProject.Controllers
                 var user = User.Identity.GetUserId();
                 DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
                 dailyReport.DayCareId = dayCare;
-                dailyReport.ChildId = child;
+                //dailyReport.ChildId = child;
                 dayCare.DailyReports.Add(dailyReport);
                 db.DailyReports.Add(dailyReport);
                 db.SaveChanges();

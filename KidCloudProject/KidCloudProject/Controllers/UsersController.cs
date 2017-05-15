@@ -43,10 +43,10 @@ namespace TrashPickup.Controllers
                 else if (isUser("DayCare"))
                 {
                     string holder = user.GetUserId();
-                    var temp = db.DayCares.Where(i => i.UserId.Id == holder).FirstOrDefault().Id;
+                    var temp = db.DayCares.Where(l => l.UserId.Id == holder).FirstOrDefault().Id;
                     ViewBag.Id = temp;
                     var temp1 = db.DayCares.Where(i => i.UserId.Id == holder).FirstOrDefault().ZipCode;
-                    var dayCare = db.DayCares.Where(t => t.UserId.Id == holder).Select(a => a).FirstOrDefault();
+                    var dayCare = db.DayCares.Where(t => t.UserId.Id == holder).Select(s => s).FirstOrDefault();
                     ViewBag.ZipCode = temp1;
                     ViewBag.displayMenu = "DayCare";
                     return View(dayCare);

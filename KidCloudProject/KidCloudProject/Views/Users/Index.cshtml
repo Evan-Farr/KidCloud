@@ -81,16 +81,25 @@ else if (ViewBag.displayMenu == "DayCare")
         <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
         <hr />
         <li>@Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, null)</li>
-        @*<li>@Html.ActionLink("Create New Daily Report", "ChooseChild", "DayCares", new { id = GetChoice() }, null)</li>*@
-        <li>
+    </h3>
+        <div class="col-md-10">
             @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
             {
-
-                @Html.DropDownListFor(Model => Model.Children, Model.Children.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "Select Child")
-                <button class="btn btn-default" type="submit">Create New Daily Report</button>
+                <fieldset>
+                    <dl>
+                        <dt>
+                            <h3>@Html.Label("New Daily Report")  </h3> 
+                        </dt>
+                        <dd>
+                            @Html.DropDownListFor(Model => Model.Children, Model.Children.Select(h => new SelectListItem { Text = h.FirstName + " " + h.LastName, Value = h.Id.ToString() }), "Select Child")
+                        </dd>
+                    </dl>
+                </fieldset>
+               
+                <input class="btn btn-default" type="submit" value="Create"/>
             }
-        </li>
-    </h3>
+        </div>
+     <br />
 }
 
 
