@@ -37,26 +37,38 @@ namespace KidCloudProject.Controllers
         }
 
         // GET: DailyReports/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create(DayCare dayCare)
+        //{
+        //    var DayCare = db.DayCares.Where(d => d.Id == dayCare.Id).Select(s => s).FirstOrDefault();
+        //    foreach(var kid in DayCare.Children)
+        //    {
+        //        if()
+        //    }
+        //    return View(child);
+        //}
 
         // POST: DailyReports/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ReportDate,BathroomUse,Meals,Sleep,ActivityReport,SuppliesNeeds,Mood,MiscellaneousNotes")] DailyReport dailyReport)
+        public ActionResult Create([Bind(Include = "Id,ReportDate,BathroomUse,Meals,Sleep,ActivityReport,SuppliesNeeds,Mood,MiscellaneousNotes")] DailyReport dailyReport, Child child)
         {
             if (ModelState.IsValid)
             {
+                dailyReport.ReportDate = DateTime.Today;
+                var user = User.Identity.GetUserId();
+                DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+                dailyReport.DayCareId = dayCare;
+                dailyReport.ChildId = child;
+                dayCare.DailyReports.Add(dailyReport);
                 db.DailyReports.Add(dailyReport);
                 db.SaveChanges();
+                TempData["Message"] = "**Daily report successfully created and saved.";
                 return RedirectToAction("Index", "Users");
             }
-
-            return View(dailyReport);
+            TempData["ErrorMessage"] = "**An error occured while saving the report.";
+            return RedirectToAction("Index", "Users");
         }
 
         // GET: DailyReports/Edit/5
