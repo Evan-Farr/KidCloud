@@ -15,7 +15,13 @@
             @Html.DisplayName("Report Date")
         </th>
         <th>
-            @Html.DisplayName("Bathroom")
+            @Html.DisplayName("Day Care")
+        </th>
+        <th>
+            @Html.DisplayName("Child's First Name")
+        </th>
+        <th>
+            @Html.DisplayName("Child's Last Name")
         </th>
         <th>
             @Html.DisplayName("Food")
@@ -44,6 +50,15 @@
             @Html.DisplayFor(modelItem => item.ReportDate)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DayCareId.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChildId.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChildId.LastName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.BathroomUse)
         </td>
         <td>
@@ -66,7 +81,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id })
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id })*@
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

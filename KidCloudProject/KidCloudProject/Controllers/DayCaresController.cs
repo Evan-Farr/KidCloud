@@ -231,20 +231,5 @@ namespace KidCloudProject.Controllers
             TempData["Message"] = "**Application has been removed from your pending applications.";
             return RedirectToAction("ViewPendingApplications");
         }
-
-        public ActionResult ChooseChild(Child child)
-        {
-            if (child == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var id = db.Children.Where(p => p.Id == child.Id).Select(s => s).FirstOrDefault();
-            if(id == null)
-            {
-                TempData["ErrorMessage"] = "**Invalid Search. That child does not exist in the database. Make sure your spelling the name correctly.";
-                return RedirectToAction("Index", "Users");
-            }
-            return RedirectToAction("Create", "DailyReports", new { id = id });
-        }
     }
 }

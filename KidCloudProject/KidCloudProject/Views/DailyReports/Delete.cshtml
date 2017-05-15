@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ReportDate)
+            @Html.DisplayName("Report Date")
         </dt>
 
         <dd>
@@ -20,7 +20,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BathroomUse)
+            @Html.DisplayName("First Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChildId.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Last Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChildId.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Bathroom")
         </dt>
 
         <dd>
@@ -28,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Meals)
+            @Html.DisplayName("Food")
         </dt>
 
         <dd>
@@ -36,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sleep)
+            @Html.DisplayName("Sleep")
         </dt>
 
         <dd>
@@ -44,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ActivityReport)
+            @Html.DisplayName("Activity")
         </dt>
 
         <dd>
@@ -52,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SuppliesNeeds)
+            @Html.DisplayName("Bring Supplies")
         </dt>
 
         <dd>
@@ -60,7 +76,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Mood)
+            @Html.DisplayName("Mood")
         </dt>
 
         <dd>
@@ -68,7 +84,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MiscellaneousNotes)
+            @Html.DisplayName("Misc. Notes")
         </dt>
 
         <dd>
@@ -82,7 +98,8 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @*@Html.ActionLink("Back to List", "Index") //for admin only*@
+            @Html.ActionLink("Cancel", "Index", "Users")
         </div>
     }
 </div>

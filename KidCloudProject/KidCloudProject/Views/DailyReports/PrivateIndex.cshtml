@@ -1,0 +1,86 @@
+﻿@model IEnumerable<KidCloudProject.Models.DailyReport>
+
+@{
+    ViewBag.Title = "PrivateIndex";
+}
+
+<h2>Daily Reports</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Report Date")
+        </th>
+        <th>
+            @Html.DisplayName("First Name")
+        </th>
+        <th>
+            @Html.DisplayName("Last Name")
+        </th>
+        <th>
+            @Html.DisplayName("Bathroom")
+        </th>
+        <th>
+            @Html.DisplayName("Food")
+        </th>
+        <th>
+            @Html.DisplayName("Sleep")
+        </th>
+        <th>
+            @Html.DisplayName("Activity")
+        </th>
+        <th>
+            @Html.DisplayName("Bring Supplies")
+        </th>
+        <th>
+            @Html.DisplayName("Mood")
+        </th>
+        <th>
+            @Html.DisplayName("Misc. Notes")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildId.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildId.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BathroomUse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meals)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sleep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityReport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuppliesNeeds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mood)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiscellaneousNotes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Back", "Index", "Users")
+</p>
