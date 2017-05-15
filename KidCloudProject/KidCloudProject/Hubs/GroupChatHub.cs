@@ -12,7 +12,7 @@ using KidCloudProject._APIs;
 
 namespace KidCloudProject.Hubs
 {
-    public class ChatHub : Hub
+    public class GroupChatHub : Hub
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUser User;
@@ -23,7 +23,7 @@ namespace KidCloudProject.Hubs
 
             TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
 
-            string channelSid = GetChannelId();
+            string channelSid = GetGroupChannelId();
             
             if (channelSid != null && body != "" && body != null)
             {
@@ -39,13 +39,13 @@ namespace KidCloudProject.Hubs
             }
         }
 
-        private string GetChannelId()
+        private string GetGroupChannelId()
         {
             string userId = this.User.Id;
 
+            // Admin not handled yet
             if (isUser("Admin"))
             {
-                //channelSid = db.Parents.Where(p => p.UserId.Id == userId).First().DayCare.ChannelId;
                 return null;
             }
             else if (isUser("DayCare"))

@@ -239,7 +239,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\GroupChatHub.cs" />
+    <Compile Include="Hubs\DirectMessageHub.cs" />
     <Compile Include="Migrations\201705121723361_new first start.cs" />
     <Compile Include="Migrations\201705121723361_new first start.Designer.cs">
       <DependentUpon>201705121723361_new first start.cs</DependentUpon>
@@ -489,6 +490,8 @@
     <Content Include="Views\DailyReports\PrivateIndex.cshtml" />
     <Content Include="Views\DailyReports\PrivateIndexByChild.cshtml" />
     <Content Include="Views\DailyReports\ParentsIndexByChild.cshtml" />
+    <Content Include="Views\Messages\ViewDirectMessageChannels.cshtml" />
+    <Content Include="Views\Messages\DirectMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

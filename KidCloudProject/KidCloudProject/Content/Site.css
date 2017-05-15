@@ -129,3 +129,61 @@ textarea {
 .paypal a {
     color: #fff;
 }
+
+.navbar {
+    background-color: #a05c95;
+    border-color: #8c6ab6;
+}
+
+.btn-primary {
+    background-color: #a05c95;
+    border-color: #8c6ab6;
+}
+
+.btn-primary:hover {
+    background-color: #aa69a0;
+    border-color: #bf86b6;
+}
+
+.icon-bar {
+    background-color: #fff;
+}
+
+.navbar-brand {
+    color: #fff;
+}
+
+.navbar-nav li a {
+    color: #fff;
+}
+
+.navbar-nav li a:hover {
+    background-color: #aa69a0;
+    color: #fff;
+}
+
+a {
+    color: #a05c95;
+}
+
+a:hover {
+    color: #bf86b6;
+}
+
+.homepage-jumbotron-bg {
+    /*Image from devcodecamp facebook page*/
+    background: #fff url("https://scontent.xx.fbcdn.net/v/t31.0-8/16300324_1857767541147294_4997756202296367913_o.jpg?oh=621c9cd31f3098579a33720ca70b9fb3&oe=59BD41B6");
+    background-size: cover;
+    background-position-y: 0px;
+}
+
+.homepage-jumbotron-bg .jumbotron {
+    color: #fff;
+    background: rgba(0,0,0,0.25);
+}
+
+@media screen and (min-width: 768px) {
+    .homepage-jumbotron-bg {
+        background-position-y: -124px;
+    }
+}
