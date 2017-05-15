@@ -178,11 +178,12 @@ namespace KidCloudProject.Controllers
 
         public ActionResult FindDayCares(string zipCode)
         {
-            if (zipCode == null)
+            if (zipCode != "")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View(db.DayCares.Where(p => p.ZipCode == zipCode).ToList());
             }
-            return View(db.DayCares.Where(p => p.ZipCode == zipCode).ToList());
+            TempData["ErrorMessage2"] = "**Error: You did not input a valid Zip Code.";
+            return RedirectToAction("Index", "Users");
         }
 
         public ActionResult Calendar()

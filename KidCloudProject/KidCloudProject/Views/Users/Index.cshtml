@@ -6,6 +6,15 @@
 @if (ViewBag.displayMenu == "Yes")
 {
     <h1>Welcome Admin.</h1>
+    <div class="col-md-10">
+        <div class="text-success">
+            @TempData["Message"]
+        </div>
+        <div class="text-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    </div>
+    <hr />
     <h3>
         <li>@Html.ActionLink("View Parents", "Index", "Parents")</li>
         <li>@Html.ActionLink("View Children", "Index", "Children")</li>
@@ -18,11 +27,14 @@ else if (ViewBag.displayMenu == "Parent")
 {
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <br />
-        <div class="col-md-10">
-            <div class="text-success">
-                @TempData["Message"]
-            </div>
+    <div class="col-md-10">
+        <div class="text-success">
+            @TempData["Message"]
         </div>
+        <div class="text-warning">
+            @TempData["ErrorMessage"]
+        </div>
+    </div>
     <hr />
     <h3>
         <br />
@@ -34,6 +46,11 @@ else if (ViewBag.displayMenu == "Parent")
         @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare along with chat*@
     </h3>
     <hr />
+    <div class="col-md-10">
+        <div class="text-warning">
+            @TempData["ErrorMessage1"]
+        </div>
+    </div>
     <div class="col-md-10">
         @using (Html.BeginForm("ParentsIndexByChild", "DailyReports", FormMethod.Post))
         {
@@ -52,6 +69,11 @@ else if (ViewBag.displayMenu == "Parent")
     </div>
     <br />
     <hr />
+    <div class="col-md-10">
+        <div class="text-warning">
+            @TempData["ErrorMessage2"]
+        </div>
+    </div>
     <div class="col-md-4">
         <h2>@Html.Label("Find the right day care!")</h2>
         @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
@@ -83,6 +105,8 @@ else if (ViewBag.displayMenu == "DayCare")
     <div class="col-md-10">
         <div class="text-success">
             @TempData["Message"]
+        </div>
+        <div class="text-danger">
             @TempData["ErrorMessage"]
         </div>
     </div>
@@ -115,6 +139,12 @@ else if (ViewBag.displayMenu == "DayCare")
                 <input class="btn btn-default" type="submit" value="Show Me" />
         }
     </div>
+    <br /><br />
+    <div class="col-md-10">
+        <div class="text-danger">
+            @TempData["ErrorMessage1"]
+        </div>
+    </div>
     <br /><br /><br />
     <div class="col-md-10">
         @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
@@ -131,6 +161,11 @@ else if (ViewBag.displayMenu == "DayCare")
             </fieldset>
             <input class="btn btn-default" type="submit" value="Create"/>
         }
+    </div>
+    <div class="col-md-10">
+        <div class="text-danger">
+            @TempData["ErrorMessage2"]
+        </div>
     </div>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><hr />
 }
