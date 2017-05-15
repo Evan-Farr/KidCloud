@@ -189,8 +189,10 @@ namespace KidCloudProject.Controllers
         public ActionResult Calendar()
         {
             ApplicationDbContext context = new ApplicationDbContext();
-
-            return View(context.Events.ToList());
+            var currentUserId = User.Identity.GetUserId();
+            var user = context.DayCares.Where(i => i.UserId.Id == currentUserId).First();
+            var dayCareEvents = context.Events.Where(d => d.DayCareId == user.Id);
+            return View(dayCareEvents.ToList());
         }
 
         public ActionResult ViewPendingApplications()

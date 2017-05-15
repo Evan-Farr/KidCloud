@@ -7,8 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KidCloudProject.Models;
-using System.Web.Routing;
 using Microsoft.AspNet.Identity;
+using System.Web.Routing;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace KidCloudProject.Controllers
 {
@@ -52,12 +53,23 @@ namespace KidCloudProject.Controllers
         {
             @event.start = StartDate.ToString("yyyy-MM-dd ") + StartTime.ToString("HH:mm:ss");
             @event.end = EndDate.ToString("yyyy-MM-dd ") + EndTime.ToString("HH:mm:ss");
+            @event.editable = true;
 
             if (ModelState.IsValid)
             {
                 var holder = User.Identity.GetUserId();
                 var same = db.Users.Where(s => s.Id == holder).FirstOrDefault();
                 @event.UserId = same;
+                if (isUser("Parent"))
+                {
+                    var parentControl = db.Parents.Where(u => u.UserId.Id == holder).First();
+                    @event.DayCareId = parentControl.DayCare.Id;
+                }
+                else if (isUser("DayCare"))
+                {
+                    var dayCareControl = db.DayCares.Where(u => u.UserId.Id == holder).First();
+                    @event.DayCareId = dayCareControl.Id;
+                }
                 db.Events.Add(@event);
                 db.SaveChanges();
                 return RedirectToAction("Calendar", new RouteValueDictionary(
@@ -87,7 +99,7 @@ namespace KidCloudProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,title,allDay,start,end,editable")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventId,title,allDay,start,end,editable,EventType")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -131,6 +143,25 @@ namespace KidCloudProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        private bool isUser(string role)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == role)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

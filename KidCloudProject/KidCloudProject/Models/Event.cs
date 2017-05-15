@@ -26,6 +26,8 @@ namespace KidCloudProject.Models
 
         public virtual ApplicationUser UserId { get; set; }
 
+        public int DayCareId { get; set; }
+
     }
 
     public enum EventType
