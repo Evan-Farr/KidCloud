@@ -36,38 +36,48 @@ namespace KidCloudProject.Controllers
 
         public ActionResult PrivateIndexByChild(string Children)
         {
-            var childId = int.Parse(Children);
-            Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
-            var user = User.Identity.GetUserId();
-            DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
-            var reports1 = db.DailyReports.Where(d => d.ChildId.Id == child.Id).Select(a => a).ToList();
-            var reports = new List<DailyReport>();
-            foreach (var report in reports1)
+            if(Children != "")
             {
-                if(report.DayCareId == dayCare)
+                var childId = int.Parse(Children);
+                Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
+                var user = User.Identity.GetUserId();
+                DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
+                var reports1 = db.DailyReports.Where(d => d.ChildId.Id == child.Id).Select(a => a).ToList();
+                var reports = new List<DailyReport>();
+                foreach (var report in reports1)
                 {
-                    reports.Add(report);
+                    if (report.DayCareId == dayCare)
+                    {
+                        reports.Add(report);
+                    }
                 }
+                return View(reports);
             }
-            return View(reports);
+            TempData["ErrorMessage1"] = "**Error: You did not select a child.";
+            return RedirectToAction("Index", "Users");
         }
 
         public ActionResult ParentsIndexByChild(string Children)
         {
-            var childId = int.Parse(Children);
-            Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
-            var user = User.Identity.GetUserId();
-            Parent parent = db.Parents.Where(v => v.UserId.Id == user).Select(i => i).FirstOrDefault();
-            var reports1 = db.DailyReports.Where(d => d.ChildId.Id == child.Id).Select(a => a).ToList();
-            var reports = new List<DailyReport>();
-            foreach (var report in reports1)
+            if(Children != "")
             {
-                if (child.Parents.Contains(parent))
+                var childId = int.Parse(Children);
+                Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
+                var user = User.Identity.GetUserId();
+                Parent parent = db.Parents.Where(v => v.UserId.Id == user).Select(i => i).FirstOrDefault();
+                var reports1 = db.DailyReports.Where(d => d.ChildId.Id == child.Id).Select(a => a).ToList();
+                var reports = new List<DailyReport>();
+                foreach (var report in reports1)
                 {
-                    reports.Add(report);
+                    if (child.Parents.Contains(parent))
+                    {
+                        reports.Add(report);
+                    }
                 }
+                return View(reports);
             }
-            return View(reports);
+            TempData["ErrorMessage1"] = "**Error: You did not select a child.";
+            return RedirectToAction("Index", "Users");
         }
 
         // GET: DailyReports/Details/5
@@ -87,11 +97,16 @@ namespace KidCloudProject.Controllers
 
         public ActionResult Create(string Children)
         {
-            var childId = int.Parse(Children);
-            Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
-            DailyReport report = new DailyReport();
-            report.ChildId = child;
-            return View(report);
+            if(Children != "")
+            {
+                var childId = int.Parse(Children);
+                Child child = db.Children.Where(d => d.Id == childId).Select(s => s).FirstOrDefault();
+                DailyReport report = new DailyReport();
+                report.ChildId = child;
+                return View(report);
+            }
+            TempData["ErrorMessage2"] = "**Error: You did not select a child.";
+            return RedirectToAction("Index", "Users");
         }
 
         // POST: DailyReports/Create
