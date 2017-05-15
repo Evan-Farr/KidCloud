@@ -20,7 +20,6 @@ namespace KidCloudProject.Models
 
         public string end { get; set; }
 
-        public Boolean overlap { get; set; }
-
+        public Boolean editable { get; set; }
     }
 }
