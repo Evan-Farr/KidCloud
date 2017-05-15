@@ -1,6 +1,14 @@
 ﻿body {
     padding-top: 50px;
+    padding-bottom: 20px;  
+}
+
+.homeBody {
+    padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url(Images/background3.png);
+    background-size:100%;
+    opacity: 1;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -8,6 +16,15 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/*.accountPage {
+    background-image: url(Images/logo.png);
+    background-size:60%;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position-y: 100px;
+    background-position-x: 400px;
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -150,7 +167,11 @@ textarea {
 }
 
 .navbar-brand {
-    color: #fff;
+    background-image: url(Images/logo.png);
+    background-size: 100px, 100px;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 100px;
 }
 
 .navbar-nav li a {
@@ -171,15 +192,15 @@ a:hover {
 }
 
 .homepage-jumbotron-bg {
-    /*Image from devcodecamp facebook page*/
-    background: #fff url("https://scontent.xx.fbcdn.net/v/t31.0-8/16300324_1857767541147294_4997756202296367913_o.jpg?oh=621c9cd31f3098579a33720ca70b9fb3&oe=59BD41B6");
+    background-image: url(Images/background2.png);
     background-size: cover;
     background-position-y: 0px;
+    opacity: 1;
 }
 
 .homepage-jumbotron-bg .jumbotron {
     color: #fff;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.5);
 }
 
 @media screen and (min-width: 768px) {
