@@ -129,3 +129,43 @@ textarea {
 .paypal a {
     color: #fff;
 }
+
+.navbar {
+    background-color: #a05c95;
+    border-color: #8c6ab6;
+}
+
+.btn-primary {
+    background-color: #a05c95;
+    border-color: #8c6ab6;
+}
+
+.btn-primary:hover {
+    background-color: #aa69a0;
+    border-color: #bf86b6;
+}
+
+.icon-bar {
+    background-color: #fff;
+}
+
+.navbar-brand {
+    color: #fff;
+}
+
+.navbar-nav li a {
+    color: #fff;
+}
+
+.navbar-nav li a:hover {
+    background-color: #aa69a0;
+    color: #fff;
+}
+
+a {
+    color: #a05c95;
+}
+
+a:hover {
+    color: #bf86b6;
+}
