@@ -92,19 +92,15 @@ namespace KidCloudProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                const string accountSid = "AC383fc67c15e32582075da33d541fd388";
-                const string authToken = "7915107c0ef796ad3d5a51fe2cdd0552";
-                const string serviceSid = "IS9acc1cbb2d874347a95cacebfc5cd5aa";
-
                 var holder = User.Identity.GetUserId();
                 var same = db.Users.Where(s => s.Id == holder).FirstOrDefault();
                 dayCare.UserId = same;
 
-                TwilioClient.Init(accountSid, authToken);
-                var channel = ChannelResource.Create(serviceSid, friendlyName: dayCare.Name, type: ChannelResource.ChannelTypeEnum.Private);
+                TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
+                var channel = ChannelResource.Create(TwilioApiKeys.serviceSid, friendlyName: dayCare.Name, type: ChannelResource.ChannelTypeEnum.Private);
                 dayCare.ChannelId = channel.Sid;
-                MemberResource.Create(serviceSid, channel.Sid, "Admin");
-                MemberResource.Create(serviceSid, channel.Sid, dayCare.UserId.UserName);
+                MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, "Admin");
+                MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dayCare.UserId.UserName);
 
                 db.DayCares.Add(dayCare);
                 db.SaveChanges();

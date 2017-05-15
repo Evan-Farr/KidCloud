@@ -9,6 +9,7 @@ using KidCloudProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using KidCloudProject._APIs;
+using Twilio.Rest.Chat.V2.Service;
 
 namespace KidCloudProject.Controllers
 {
@@ -24,7 +25,48 @@ namespace KidCloudProject.Controllers
 
         public ActionResult CreateDirectMessageChannel(string Username)
         {
-            return Content(Username);
+            string userId = User.Identity.GetUserId();
+            ApplicationUser reciver = db.Users.Where(u => u.UserName == Username).First();
+            ApplicationUser sender = db.Users.Where(u => u.Id == userId).First();
+
+            ViewBag.UserName = User.Identity.Name;
+            DirectMessageChannel dmChannel = null;
+
+            try
+            {
+                dmChannel = db.DirectMessageChannels.Where(dm => dm.ReciverId.Id == reciver.Id && dm.SenderId.Id == sender.Id || dm.ReciverId.Id == sender.Id && dm.SenderId.Id == reciver.Id).First();
+                return View("GroupChat", MessageResource.Read(TwilioApiKeys.serviceSid, dmChannel.ChannelId));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
+
+            if (dmChannel != null)
+            {
+                // API Create channel
+                TwilioClient.Init(TwilioApiKeys.accountSid, TwilioApiKeys.authToken);
+                var channel = ChannelResource.Create(TwilioApiKeys.serviceSid, friendlyName: "DM Channel", type: ChannelResource.ChannelTypeEnum.Private);
+
+                // Database DMChannel
+                dmChannel = new DirectMessageChannel();
+                dmChannel.ChannelId = channel.Sid;
+                dmChannel.ReciverId = reciver;
+                dmChannel.SenderId = sender;
+
+                // API Add members
+                MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dmChannel.ReciverId.UserName);
+                MemberResource.Create(TwilioApiKeys.serviceSid, channel.Sid, dmChannel.SenderId.UserName);
+
+                // Save DMChannel to Database
+                db.DirectMessageChannels.Add(dmChannel);
+                db.SaveChanges();
+
+                return View("GroupChat", MessageResource.Read(TwilioApiKeys.serviceSid, channel.Sid));
+            }
+
+            return Content("Something broke");
         }
 
         public ActionResult ViewDirectMessageChannels()
