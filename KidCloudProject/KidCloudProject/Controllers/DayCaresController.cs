@@ -77,11 +77,6 @@ namespace KidCloudProject.Controllers
                 TempData["ErrorMessage"] = "**You are not currently registered with a day care.";
                 return RedirectToAction("Index", "Users");
             }
-            //if (dayCare == null)
-            //{
-            //    TempData["ErrorMessage"] = "**You are not currently registered with a day care.";
-            //    return RedirectToAction("Index", "Users");
-            //}
         }
 
         //This details is meant for the page where you can see details and apply 
@@ -226,7 +221,7 @@ namespace KidCloudProject.Controllers
         public ActionResult AcceptApplication(int? applicationId)
         {
             var user = User.Identity.GetUserId();
-            var application = db.Applications.Where(a => a.Id == applicationId).Select(p => p).FirstOrDefault();
+            var application = db.Applications.Where(a => a.Parent.Id == applicationId).Select(p => p).FirstOrDefault();
             DayCare dayCare = db.DayCares.Where(u => u.UserId.Id == user).Select(s => s).FirstOrDefault();
             dayCare.Parents.Add(application.Parent);
             var kids = new List<Child>();
