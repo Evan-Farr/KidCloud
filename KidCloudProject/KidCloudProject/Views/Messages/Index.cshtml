@@ -2,8 +2,10 @@
     ViewBag.Title = "Index";
 }
 
-<h3>Chat Rooms</h3>
+
 <ul>
-    <li>@Html.ActionLink("GroupChat", "GroupChat", "Messages")</li>
-    <li>@Html.ActionLink("View Direct Message Channels", "ViewDirectMessageChannels", "Messages")</li>
+    <br /><br /><br />
+    @Html.ActionLink("GroupChat", "GroupChat", "Messages", null, new { @class = "btn btn-primary btn-lg" })
+    <br /><br />
+    @Html.ActionLink("View Direct Message Channels", "ViewDirectMessageChannels", "Messages", null, new { @class = "btn btn-primary btn-lg" })
 </ul>
