@@ -254,6 +254,10 @@
     <Compile Include="Migrations\201705151854195_Added foreign key to Event model.Designer.cs">
       <DependentUpon>201705151854195_Added foreign key to Event model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705152134424_added DayCareId to Event Model and rescaffolded Controller and View.cs" />
+    <Compile Include="Migrations\201705152134424_added DayCareId to Event Model and rescaffolded Controller and View.Designer.cs">
+      <DependentUpon>201705152134424_added DayCareId to Event Model and rescaffolded Controller and View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
@@ -511,9 +515,12 @@
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\DayCares\DetailsForParent.cshtml" />
+    <Content Include="Views\Parents\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\201705152130287_added DayCareId to Event Model and rescaffolded Controller\" />
+    <Folder Include="Migrations\201705152134263_added DayCareId to Event Model and rescaffolded Controller\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -532,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705151854195_Added foreign key to Event model.resx">
       <DependentUpon>201705151854195_Added foreign key to Event model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152134424_added DayCareId to Event Model and rescaffolded Controller and View.resx">
+      <DependentUpon>201705152134424_added DayCareId to Event Model and rescaffolded Controller and View.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -26,6 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.editable)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventType)
+        </th>
         <th></th>
     </tr>
 
@@ -45,6 +48,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.editable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EventId }) |
