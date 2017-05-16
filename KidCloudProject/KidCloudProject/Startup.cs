@@ -72,7 +72,7 @@ namespace KidCloudProject
             double halfDayCharge;
             decimal childTotal;
 
-            if (currentDate.Day == 12)
+            if (currentDate.Day == 16)
             {
                 var invoiceAccounts = db.DayCares.Select(d => d.Parents).ToList();
 
