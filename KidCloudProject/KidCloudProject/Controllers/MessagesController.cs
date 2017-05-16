@@ -115,9 +115,8 @@ namespace KidCloudProject.Controllers
 
                 return View(users);
             }
-
-
-            return Content("We broke something");
+            TempData["ErrorMessage"] = "**Error: You must be registered with a day care to access a chat.";
+            return RedirectToAction("Index", "Users");
         }
 
         // GET: Messages
