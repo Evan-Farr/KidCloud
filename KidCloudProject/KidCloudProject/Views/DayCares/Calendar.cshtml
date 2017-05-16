@@ -31,9 +31,6 @@
             slotMinutes: 15,
             disableResizing: false,
             events: @Html.Raw(Json.Encode(Model)),
-            eventClick: function(calEvent){
-                alert('Event: ' + calEvent.title + '<br/>' + 'Start: ' + calEvent.start + '<br/>' + 'End: ' + calEvent.end);
-            }
         });
     });
 </script>
