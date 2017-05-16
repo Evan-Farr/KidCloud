@@ -12,6 +12,7 @@ using Twilio;
 using Twilio.Rest.Chat.V2.Service;
 using Twilio.Rest.Chat.V2.Service.Channel;
 using KidCloudProject._APIs;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace KidCloudProject.Controllers
 {
@@ -59,6 +60,8 @@ namespace KidCloudProject.Controllers
             {
                 return HttpNotFound();
             }
+            if (isUser("Parent"))
+                ViewBag.user = "Parent";
             return View(dayCare);
         }
 
@@ -189,8 +192,10 @@ namespace KidCloudProject.Controllers
         public ActionResult Calendar()
         {
             ApplicationDbContext context = new ApplicationDbContext();
-
-            return View(context.Events.ToList());
+            var currentUserId = User.Identity.GetUserId();
+            var user = context.DayCares.Where(i => i.UserId.Id == currentUserId).First();
+            var dayCareEvents = context.Events.Where(d => d.DayCareId == user.Id);
+            return View(dayCareEvents.ToList());
         }
 
         public ActionResult ViewPendingApplications()
@@ -232,6 +237,26 @@ namespace KidCloudProject.Controllers
             db.SaveChanges();
             TempData["Message"] = "**Application has been removed from your pending applications.";
             return RedirectToAction("ViewPendingApplications");
+        }
+
+        public bool isUser(string role)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == role)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

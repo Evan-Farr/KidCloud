@@ -1,0 +1,36 @@
+﻿@model IEnumerable<KidCloudProject.Models.Event>
+@{
+    ViewBag.Title = "Calendar";
+}
+
+<h2>Calendar</h2>
+@Html.ActionLink("Add New Event", "Create", "Events")
+<div id="calendar"></div>
+
+<script>
+    $(document).ready(function () {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        $('#calendar').fullCalendar({
+            editable: true,
+            year: y,
+            month: m,
+            date: d,
+            header: {
+                left: 'title',
+                right: 'prev,next today,agendaDay,agendaWeek,month'
+            },
+            defaultView: 'month',
+            minTime: 7,
+            maxTime: 22,
+            editable: true,
+            droppable: false,
+            slotMinutes: 15,
+            disableResizing: false,
+            events: @Html.Raw(Json.Encode(Model)),
+        });
+    });
+</script>
