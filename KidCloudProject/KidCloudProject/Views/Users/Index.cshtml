@@ -6,7 +6,8 @@
 @if (ViewBag.displayMenu == "Yes")
 {
     <h1>Welcome Admin.</h1>
-    <div class="col-md-10">
+    <hr />
+    <div class="col-md-12">
         <div class="text-success">
             @TempData["Message"]
         </div>
@@ -14,7 +15,6 @@
             @TempData["ErrorMessage"]
         </div>
     </div>
-    <hr />
     <h3>
         <li>@Html.ActionLink("View Parents", "Index", "Parents")</li>
         <li>@Html.ActionLink("View Children", "Index", "Children")</li>
@@ -25,72 +25,72 @@
 }
 else if (ViewBag.displayMenu == "Parent")
 {
-    <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
-    <br />
-    <div class="col-md-10">
-        <div class="text-success">
-            @TempData["Message"]
-        </div>
-        <div class="text-warning">
-            @TempData["ErrorMessage"]
-        </div>
-    </div>
-    <hr />
-    <h3>
-        <br />
-        <li>@Html.ActionLink("My Account", "Details", "Parents", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("My Children", "ViewChildren", "Parents", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("My Current Balance", "ViewBalance", "Parents", new { id = ViewBag.Id }, null)</li>
+    <div class="accountPage">
         <hr />
-        <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
-        @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare along with chat*@
-    </h3>
-    <hr />
-    <div class="col-md-10">
-        @using (Html.BeginForm("ParentsIndexByChild", "DailyReports", FormMethod.Post))
-        {
-            <fieldset>
-                <dl>
-                    <dt>
-                        <h2>@Html.Label("View Daily Reports")</h2>
-                    </dt>
-                    <dd>
-                        @Html.DropDownList("Children", "Select Child")
-                    </dd>
-                </dl>
-            </fieldset>
-            <input class="btn btn-default" type="submit" value="Show Me" />
-        }
-    </div>
-    <br /><br />
-    <div class="col-md-10">
-        <div class="text-warning">
-            @TempData["ErrorMessage1"]
+        <div class="col-md-12">
+            <div class="text-success">
+                @TempData["Message"]
+            </div>
+            <div class="text-warning">
+                @TempData["ErrorMessage"]
+            </div>
         </div>
-    </div>
-    <hr />
-    <div class="col-md-10">
-        <h2>@Html.Label("Find the right day care!")</h2>
-        @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
-        {
-            @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code" })
-            @Html.ValidationMessageFor(model => model.ZipCode)
-            <button class="btn btn-default" type="submit">Search</button>
-        }
-    </div>
-    <br /><br />
-    <div class="col-md-10">
-        <div class="text-warning">
-            @TempData["ErrorMessage2"]
+        <h3>
+            <br />
+            @Html.ActionLink("My Profile", "Details", "Parents", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+            <br /><br />
+            @Html.ActionLink("My Children", "ViewChildren", "Parents", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+            <br /><br />
+            @Html.ActionLink("My Current Balance", "ViewBalance", "Parents", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+            <hr />
+            @Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+            @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare along with chat*@
+        </h3>
+        <hr />
+        <div class="col-md-12">
+            @using (Html.BeginForm("ParentsIndexByChild", "DailyReports", FormMethod.Post))
+            {
+                <fieldset>
+                    <dl>
+                        <dt>
+                            <h2>@Html.Label("View Daily Reports")</h2>
+                        </dt>
+                        <dd>
+                            @Html.DropDownList("Children", "Select Child")
+                        </dd>
+                    </dl>
+                </fieldset>
+                <input class="btn btn-primary btn-md" type="submit" value="Show Me" />
+            }
         </div>
+        <div class="col-md-12">
+            <div class="text-warning">
+                @TempData["ErrorMessage1"]
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-12">
+            <h2>@Html.Label("Find the right day care!")</h2>
+            @using (Html.BeginForm("FindDayCares", "DayCares", FormMethod.Post))
+            {
+                @Html.TextBoxFor(model => model.ZipCode, new { placeholder = "Zip Code" })
+                @Html.ValidationMessageFor(model => model.ZipCode)
+                <button class="btn btn-primary btn-md" type="submit">Search</button>
+            }
+        </div>
+        <div class="col-md-12">
+            <div class="text-warning">
+                @TempData["ErrorMessage2"]
+            </div>
+        </div>
+        <br /><br /><br />
     </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><hr />
 }
 else if (ViewBag.displayMenu == "Employee")
 {
     <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
     <h3>
-        <li>@Html.ActionLink("My Account", "Details", "Employees", new { id = ViewBag.Id }, null)</li>
+        <li> @Html.ActionLink("My Account", "Details", "Employees", new { id = ViewBag.Id })</li>
         <hr />
         <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
         @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
@@ -101,9 +101,8 @@ else if (ViewBag.displayMenu == "Employee")
 }
 else if (ViewBag.displayMenu == "DayCare")
 {
-    <h2>Welcome <strong>@ViewBag.Name</strong>!</h2>
-    <br />
-    <div class="col-md-10">
+    <hr />
+    <div class="col-md-12">
         <div class="text-success">
             @TempData["Message"]
         </div>
@@ -111,9 +110,8 @@ else if (ViewBag.displayMenu == "DayCare")
             @TempData["ErrorMessage"]
         </div>
     </div>
-    <hr />
     <h3>
-        <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-md" })</li>
         <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
         <hr />
         <li>@Html.ActionLink("Manage Pending Applications", "ViewPendingApplications", "DayCares")</li>
@@ -124,7 +122,7 @@ else if (ViewBag.displayMenu == "DayCare")
         <hr />
         @*<li>@Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, null)</li>*@
     </h3>
-    <div class="col-md-10">
+    <div class="col-md-12">
         @using (Html.BeginForm("PrivateIndexByChild", "DailyReports", FormMethod.Post))
         {
             <fieldset>
@@ -137,17 +135,16 @@ else if (ViewBag.displayMenu == "DayCare")
                     </dd>
                 </dl>
             </fieldset>
-                <input class="btn btn-default" type="submit" value="Show Me" />
+                <input class="btn btn-primary btn-md" type="submit" value="Show Me" />
         }
     </div>
-    <br /><br />
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="text-danger">
             @TempData["ErrorMessage1"]
         </div>
     </div>
-    <br /><br /><br />
-    <div class="col-md-10">
+    <br /><br />
+    <div class="col-md-12">
         @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
         {
             <fieldset>
@@ -160,16 +157,15 @@ else if (ViewBag.displayMenu == "DayCare")
                     </dd>
                 </dl>
             </fieldset>
-            <input class="btn btn-default" type="submit" value="Create"/>
+            <input class="btn btn-primary btn-md" type="submit" value="Create"/>
         }
     </div>
-    <br /><br />
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="text-danger">
             @TempData["ErrorMessage2"]
         </div>
     </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><hr />
+    <br /><br /><br /><br />
 }
 
 
