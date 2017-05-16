@@ -128,7 +128,8 @@ namespace KidCloudProject.Controllers
 
             if (channelSid == null)
             {
-                return RedirectToAction("Login", "Account");
+                TempData["ErrorMessage"] = "**Error: You must be registered with a day care to access a chat.";
+                return RedirectToAction("Index", "Users");
             }
 
             ViewBag.UserName = User.Identity.Name;
@@ -156,6 +157,10 @@ namespace KidCloudProject.Controllers
             }
             else if (isUser("Parent"))
             {
+                if(ViewBag.DayCareName == null || ViewBag.DayCareName == "")
+                {
+                    return null;
+                }
                 ViewBag.DayCareName = db.Parents.Where(e => e.UserId.Id == userId).First().DayCare.Name;
                 return db.Parents.Where(p => p.UserId.Id == userId).First().DayCare.ChannelId;
             }
