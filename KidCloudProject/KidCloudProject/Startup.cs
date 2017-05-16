@@ -119,6 +119,9 @@ namespace KidCloudProject
                 if(dayCare.Children.Count >= dayCare.MaxChildren)
                 {
                     dayCare.CurrentlyAcceptingApplicants = false;
+                }else if(dayCare.Children.Count < dayCare.MaxChildren)
+                {
+                    dayCare.CurrentlyAcceptingApplicants = true;
                 }
             }
             db.SaveChanges();
