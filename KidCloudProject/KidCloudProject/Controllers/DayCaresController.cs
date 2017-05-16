@@ -60,8 +60,6 @@ namespace KidCloudProject.Controllers
             {
                 return HttpNotFound();
             }
-            if (isUser("Parent"))
-                ViewBag.user = "Parent";
             return View(dayCare);
         }
 
