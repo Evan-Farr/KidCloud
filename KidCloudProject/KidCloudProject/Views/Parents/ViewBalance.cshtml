@@ -75,10 +75,11 @@
         </div>
 
         <br />
-        <div class="col-md-10">
-        <div class="paypal">@Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal")</div>
+        <div class="col-md-12">
+        <div>@Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal", null, new { @class = "btn btn-primary btn-lg" })</div>
         </div>
     </div>
+    <br /><br /><br /><br /><br /><br />
 }
 <div>
     @Html.ActionLink("Back", "Index", "Users")
