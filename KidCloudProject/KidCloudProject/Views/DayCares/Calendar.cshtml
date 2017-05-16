@@ -5,6 +5,20 @@
 
 <h2>Calendar</h2>
 @Html.ActionLink("Add New Event", "Create", "Events")
+<div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div id="modalStart" class="modal-body"></div>
+            <div id="modalEnd" class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="calendar"></div>
 
 <script>
@@ -31,6 +45,12 @@
             slotMinutes: 15,
             disableResizing: false,
             events: @Html.Raw(Json.Encode(Model)),
+            eventClick: function(event, jsEvent, view){
+                $('#modalTitle').html(event.title);
+                $('#modalStart').html(event.start);
+                $('#modalEnd').html(event.end);
+                $('#fullCalModal').modal();
+            }
         });
     });
 </script>
