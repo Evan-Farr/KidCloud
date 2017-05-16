@@ -109,20 +109,9 @@
     </dl>
 </div>
 
-@if (ViewBag.user == "Parent")
-{
-    <p>
-        @Html.ActionLink("Calendar | ", "Calendar", "Parents")
-        @*@Html.ActionLink("Back to List", "Index")  // only the admin should have this view choice*@
-        @Html.ActionLink("Back", "Index", "Users")
-    </p>
-}
-else
-{
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-        @*@Html.ActionLink("Back to List", "Index")  // only the admin should have this view choice*@
-        @Html.ActionLink("Back", "Index", "Users")
-    </p>
-}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    @*@Html.ActionLink("Back to List", "Index")  // only the admin should have this view choice*@
+    @Html.ActionLink("Back", "Index", "Users")
+</p>
 
