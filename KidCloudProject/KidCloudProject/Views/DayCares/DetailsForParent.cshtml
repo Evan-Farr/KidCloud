@@ -1,0 +1,114 @@
+﻿@model KidCloudProject.Models.DayCare
+
+@{
+    ViewBag.Title = "DetailsForParent";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>My DayCare</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Name of Day Care")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date Established")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEstablished)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Street Address")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("City")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("State")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Zip Code")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Phone #")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Email")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Accepts Under 2 Years Old")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcceptChildrenUnderAgeTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Max Children")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxChildren)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Daily Rate Per Child")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DailyRatePerChild)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Accepting Applicants")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentlyAcceptingApplicants)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back", "Index", "Users")
+</p>
+

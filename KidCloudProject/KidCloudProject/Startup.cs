@@ -11,7 +11,7 @@ namespace KidCloudProject
 {
     public partial class Startup
     {
-        DateTime currentDate = DateTime.Now;
+        DateTime currentDate = DateTime.Today;
         private ApplicationDbContext db = new ApplicationDbContext();
 
         public void Configuration(IAppBuilder app)
@@ -72,7 +72,10 @@ namespace KidCloudProject
             double halfDayCharge;
             decimal childTotal;
 
-            if (currentDate.Day == 16)
+            //if (currentDate.Day == 16)
+
+            if (currentDate == DateTime.Today)
+
             {
                 var invoiceAccounts = db.DayCares.Select(d => d.Parents).ToList();
 
@@ -112,6 +115,19 @@ namespace KidCloudProject
             db.SaveChanges();
         }
 
-
+        private void CheckAcceptanceStatus()
+        {
+            foreach(var dayCare in db.DayCares)
+            {
+                if(dayCare.Children.Count >= dayCare.MaxChildren)
+                {
+                    dayCare.CurrentlyAcceptingApplicants = false;
+                }else if(dayCare.Children.Count < dayCare.MaxChildren)
+                {
+                    dayCare.CurrentlyAcceptingApplicants = true;
+                }
+            }
+            db.SaveChanges();
+        }
     }
 }

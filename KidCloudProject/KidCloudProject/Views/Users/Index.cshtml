@@ -5,7 +5,7 @@
 
 @if (ViewBag.displayMenu == "Yes")
 {
-    <h1>Welcome Admin.</h1>
+    <div class="accountPage">
     <hr />
     <div class="col-md-12">
         <div class="text-success">
@@ -16,12 +16,18 @@
         </div>
     </div>
     <h3>
-        <li>@Html.ActionLink("View Parents", "Index", "Parents")</li>
-        <li>@Html.ActionLink("View Children", "Index", "Children")</li>
-        <li>@Html.ActionLink("View Employees", "Index", "Employees")</li>
-        <li>@Html.ActionLink("View Day Cares", "Index", "DayCares")</li>
-        @*<li>@Html.ActionLink("View Daily Reports", "Index", "DailyReports")</li> //this should in View Day-Cares*@
+        @Html.ActionLink("View Parents", "Index", "Parents", null, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("View Children", "Index", "Children", null, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("View Employees", "Index", "Employees", null, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("View Day Cares", "Index", "DayCares", null, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("View All Daily Reports", "Index", "DailyReports", null, new { @class = "btn btn-primary btn-lg" })
+        <br /><br /><br /><br />
     </h3>
+</div>
 }
 else if (ViewBag.displayMenu == "Parent")
 {
@@ -43,8 +49,9 @@ else if (ViewBag.displayMenu == "Parent")
             <br /><br />
             @Html.ActionLink("My Current Balance", "ViewBalance", "Parents", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
             <hr />
-            @Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
-            @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li> //this will go inside daycare along with chat*@
+            @Html.ActionLink("My Day Care", "DetailsForParent", "DayCares", null, new { @class = "btn btn-primary btn-lg" })
+            @*<br /><br />
+            @Html.ActionLink("View/Edit Calendar", "Calendar", "Parents", null, new { @class = "btn btn-primary btn-lg" })*@
         </h3>
         <hr />
         <div class="col-md-12">
@@ -93,10 +100,9 @@ else if (ViewBag.displayMenu == "Employee")
         <li> @Html.ActionLink("My Account", "Details", "Employees", new { id = ViewBag.Id })</li>
         <hr />
         <li>@Html.ActionLink("My Day Care", "Details", "DayCares", new { id = ViewBag.Id }, null)</li>
-        @*<li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
+        <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
         <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>*@
-        @*//all three of these should be in the My DareCare along with Chat*@
+        <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
     </h3>
 }
 else if (ViewBag.displayMenu == "DayCare")
@@ -111,61 +117,65 @@ else if (ViewBag.displayMenu == "DayCare")
         </div>
     </div>
     <h3>
-        <li>@Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-md" })</li>
-        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, null)</li>
+        @Html.ActionLink("My Account", "Details", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("Add New Employee", "Create", "Employees", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
         <hr />
-        <li>@Html.ActionLink("Manage Pending Applications", "ViewPendingApplications", "DayCares")</li>
+        @Html.ActionLink("Manage Pending Applications", "ViewPendingApplications", "DayCares", null, new { @class = "btn btn-primary btn-lg" })
         <hr />
-        <li>@Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <li>@Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, null)</li>
-        <hr />
-        @*<li>@Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, null)</li>*@
+        @Html.ActionLink("View/Edit Calendar", "Calendar", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("View Parents", "IndexParents", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+        <br /><br />
+        @Html.ActionLink("View Children", "IndexChildren", "DayCares", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })
+        @*<hr />
+        @Html.ActionLink("View All Daily Reports", "PrivateIndex", "DailyReports", new { id = ViewBag.Id }, new { @class = "btn btn-primary btn-lg" })*@
+        <br /><br />
     </h3>
-    <div class="col-md-12">
-        @using (Html.BeginForm("PrivateIndexByChild", "DailyReports", FormMethod.Post))
-        {
-            <fieldset>
-                <dl>
-                    <dt>
-                        <h3>@Html.Label("View Daily Reports")</h3>
-                    </dt>
-                    <dd>
-                        @Html.DropDownList("Children", "Select Child")
-                    </dd>
-                </dl>
-            </fieldset>
+    <div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("PrivateIndexByChild", "DailyReports", FormMethod.Post))
+            {
+                <fieldset>
+                    <dl>
+                        <dt>
+                            <h3>@Html.Label("View Daily Reports")</h3>
+                        </dt>
+                        <dd>
+                            @Html.DropDownList("Children", "Select Child")
+                        </dd>
+                    </dl>
+                </fieldset>
                 <input class="btn btn-primary btn-md" type="submit" value="Show Me" />
-        }
-    </div>
-    <div class="col-md-12">
-        <div class="text-danger">
-            @TempData["ErrorMessage1"]
+            }
+        </div>
+        <div class="col-md-12">
+            <div class="text-danger">
+                @TempData["ErrorMessage1"]
+            </div>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
+            {
+                <fieldset>
+                    <dl>
+                        <dt>
+                            <h3>@Html.Label("Create Daily Report")</h3>
+                        </dt>
+                        <dd>
+                            @Html.DropDownList("Children", "Select Child")
+                        </dd>
+                    </dl>
+                </fieldset>
+                <input class="btn btn-primary btn-md" type="submit" value="Create" />
+            }
+        </div>
+        <div class="col-md-12">
+            <div class="text-danger">
+                @TempData["ErrorMessage2"]
+            </div>
         </div>
     </div>
-    <br /><br />
-    <div class="col-md-12">
-        @using (Html.BeginForm("Create", "DailyReports", FormMethod.Get))
-        {
-            <fieldset>
-                <dl>
-                    <dt>
-                        <h3>@Html.Label("New Daily Report")</h3> 
-                    </dt>
-                    <dd>
-                        @Html.DropDownList("Children", "Select Child")
-                    </dd>
-                </dl>
-            </fieldset>
-            <input class="btn btn-primary btn-md" type="submit" value="Create"/>
-        }
-    </div>
-    <div class="col-md-12">
-        <div class="text-danger">
-            @TempData["ErrorMessage2"]
-        </div>
-    </div>
-    <br /><br /><br /><br />
 }
 
 
