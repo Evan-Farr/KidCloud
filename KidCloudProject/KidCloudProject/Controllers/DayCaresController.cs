@@ -67,13 +67,21 @@ namespace KidCloudProject.Controllers
         {
             var holder = User.Identity.GetUserId();
             Parent parent = db.Parents.Where(p => p.UserId.Id == holder).Select(s => s).FirstOrDefault();
-            DayCare dayCare = db.DayCares.Where(a => a.Id == parent.DayCare.Id).Select(k => k).FirstOrDefault();
-            if (dayCare == null)
+            try
+            {
+                DayCare dayCare = db.DayCares.Where(a => a.Id == parent.DayCare.Id).Select(k => k).FirstOrDefault();
+                return View(dayCare);
+            }
+            catch
             {
                 TempData["ErrorMessage"] = "**You are not currently registered with a day care.";
                 return RedirectToAction("Index", "Users");
             }
-            return View(dayCare);
+            //if (dayCare == null)
+            //{
+            //    TempData["ErrorMessage"] = "**You are not currently registered with a day care.";
+            //    return RedirectToAction("Index", "Users");
+            //}
         }
 
         //This details is meant for the page where you can see details and apply 
