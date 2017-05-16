@@ -242,5 +242,20 @@ namespace KidCloudProject.Controllers
             }
             return View(children);
         }
+
+        public ActionResult Calendar()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var currentUserId = User.Identity.GetUserId();
+            var user = context.Parents.Where(i => i.UserId.Id == currentUserId).First();
+            var dayCareEvents = context.Events.Where(d => d.DayCareId == user.DayCare.Id).Where(e => e.EventType == EventType.Activity).ToList();
+            var parentEvents = context.Events.Where(p => p.UserId.Id == user.UserId.Id).ToList();
+            foreach (Event item in parentEvents)
+            {
+                dayCareEvents.Add(item);
+            }
+            return View(dayCareEvents);
+        }
+
     }
 }

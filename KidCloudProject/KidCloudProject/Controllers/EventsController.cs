@@ -64,16 +64,19 @@ namespace KidCloudProject.Controllers
                 {
                     var parentControl = db.Parents.Where(u => u.UserId.Id == holder).First();
                     @event.DayCareId = parentControl.DayCare.Id;
+                    db.Events.Add(@event);
+                    db.SaveChanges();
+                    return RedirectToAction("Calendar", new RouteValueDictionary(new { controller = "Parents", action = "Calendar" }));
                 }
                 else if (isUser("DayCare"))
                 {
                     var dayCareControl = db.DayCares.Where(u => u.UserId.Id == holder).First();
                     @event.DayCareId = dayCareControl.Id;
+                    db.Events.Add(@event);
+                    db.SaveChanges();
+                    return RedirectToAction("Calendar", new RouteValueDictionary(
+                        new { controller = "DayCares", action = "Calendar" }));
                 }
-                db.Events.Add(@event);
-                db.SaveChanges();
-                return RedirectToAction("Calendar", new RouteValueDictionary(
-                    new { controller = "DayCares", action = "Calendar" }));
             }
 
             return View(@event);
